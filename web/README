@@ -1,0 +1,24 @@
+OnlineShop Project with standart feacures:
+1. Products
+  ID
+  product name
+  product description
+  price
+  picture
+2. Cathegory
+  ID
+  name
+  subcathegory
+3. Customer
+  ID
+  name
+  last name
+  email
+  is subscriber
+4. Cart
+5. Customer profile
+6. Chec out
+7. email subscription
+8. Login
+
+  
