@@ -38,5 +38,6 @@
   <input name=""  class="btn btn-primary|secondary|success|info|warning|danger" type="submit" value="Submit">
 </form>
 
+<jsp:include page="/includes/footer.jsp"/>
 </body>
 </html>
