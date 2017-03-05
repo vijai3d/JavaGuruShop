@@ -25,7 +25,10 @@
 </head>
 <body>
 
-<form action="test" method="post">
+
+
+
+<form action="test" method="get">
   <input type="hidden" name="action" value="add">
   <div class="form-group">
     <label for=""></label>
