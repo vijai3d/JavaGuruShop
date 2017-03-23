@@ -20,8 +20,8 @@ public class ControllerImitation {
 
         //CREATE new user prototype
         UserFactory user = new UserFactoryImpl();
-        UserService users = new UserServiceImpl();
-        //user.create("", "Antipins");
+        UserService userService = new UserServiceImpl();
+        user.create("Viktors", "Antipins");
         //UserBuilder.createUser();
 
         //UPDATE user prototype
@@ -30,22 +30,22 @@ public class ControllerImitation {
         String newFirstName = "Gorge";
         String newLastName = "Mickle";
         //edit user by ID
-        //users.edit(tempId, newFirstName, newLastName);
+        userService.edit(tempId, newFirstName, newLastName);
 
         //DELETE user
-        //users.delete(tempId);
+        userService.delete(tempId);
 
         //get user by id
         Long userId = Long.valueOf(1005);
-        Optional<User> userOpt = users.showById(userId);
+        Optional<User> userOpt = userService.showById(userId);
         System.out.println(userOpt.get().getFirstName() + " " +
          userOpt.get().getLastName());
 
-        //READ all users prototype
-        //List<User> userList= users.showAll();
-        //for(User u:userList) {
-        //    System.out.println(u.getFirstName() + " " + u.getLastName());
-        //}
+        //READ all userService prototype
+        List<User> userList= userService.showAll();
+        for(User u:userList) {
+            System.out.println(u.getFirstName() + " " + u.getLastName());
+        }
 
     }
 }
