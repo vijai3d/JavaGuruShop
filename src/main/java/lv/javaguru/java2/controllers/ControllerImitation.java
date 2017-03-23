@@ -8,6 +8,7 @@ import lv.javaguru.java2.services.UserService;
 import lv.javaguru.java2.services.UserServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Vijai3D on 22.03.2017.
@@ -20,8 +21,8 @@ public class ControllerImitation {
         //CREATE new user prototype
         UserFactory user = new UserFactoryImpl();
         UserService users = new UserServiceImpl();
-        //user.create("Viktors", "Antipins");
-        UserBuilder.createUser();
+        //user.create("", "Antipins");
+        //UserBuilder.createUser();
 
         //UPDATE user prototype
         //getting new values from JSP form
@@ -29,16 +30,22 @@ public class ControllerImitation {
         String newFirstName = "Gorge";
         String newLastName = "Mickle";
         //edit user by ID
-        users.edit(tempId, newFirstName, newLastName);
+        //users.edit(tempId, newFirstName, newLastName);
 
         //DELETE user
         //users.delete(tempId);
 
+        //get user by id
+        Long userId = Long.valueOf(1005);
+        Optional<User> userOpt = users.showById(userId);
+        System.out.println(userOpt.get().getFirstName() + " " +
+         userOpt.get().getLastName());
+
         //READ all users prototype
-        List<User> userList= users.showAll();
-        for(User u:userList) {
-            System.out.println(u.getFirstName() + " " + u.getLastName());
-        }
+        //List<User> userList= users.showAll();
+        //for(User u:userList) {
+        //    System.out.println(u.getFirstName() + " " + u.getLastName());
+        //}
 
     }
 }
