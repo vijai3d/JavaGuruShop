@@ -14,7 +14,7 @@ import java.util.Optional;
  * Created by Vijai3D on 22.03.2017.
  */
 //Simple CRUD operations without servlet controllers
-public class ControllerImitation {
+public class UserControllerImitation {
 
     public static void main(String[] args) {
 
