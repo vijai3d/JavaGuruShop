@@ -26,7 +26,34 @@ public class UserValidatorImplTest {
         validator.validate("", "password");
     }
 
+    @Test
+    public void shouldThrowExceptionWhenLastNameIsNull() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Last Name must be not empty!");
+        validator.validate("foo", null);
+    }
 
-    // write more tests
+    @Test
+    public void shouldThrowExceptionWhenLastNameIsEmpty() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Last Name must be not empty!");
+        validator.validate("foo", "");
+    }
 
+
+
+    // too long first name and last name
+    @Test
+    public void shouldThrowExceptionWhenFirstNameIsTooLarge() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("First Name is too long");
+        validator.validate("ggggggggggggggggggggggggggggggggg", "password");
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenLastNameIsTooLarge() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Last Name is too long");
+        validator.validate("foo", "ggggggggggggggggggggggggggggggggg");
+    }
 }
