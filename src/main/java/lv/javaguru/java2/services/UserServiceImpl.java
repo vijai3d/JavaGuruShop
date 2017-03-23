@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -26,6 +27,17 @@ public class UserServiceImpl implements UserService {
         user.setFirstName(newFirstName);
         user.setLastName(newLastName);
         userDAO.update(user);
+    }
+
+    @Override
+    public List<User> showAll() {
+        List<User> userList = userDAO.getAll();
+        return userList;
+    }
+
+    @Override
+    public void delete(Long userId) {
+        userDAO.delete(userId);
     }
 
 }
