@@ -2,6 +2,8 @@ package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.domain.products.Category;
 import lv.javaguru.java2.domain.products.Product;
+import lv.javaguru.java2.services.products.CategoryFactory;
+import lv.javaguru.java2.services.products.CategoryFactoryImpl;
 import lv.javaguru.java2.services.products.ProductFactory;
 import lv.javaguru.java2.services.products.ProductFactoryImpl;
 
@@ -11,7 +13,7 @@ import lv.javaguru.java2.services.products.ProductFactoryImpl;
 public class ProductController {
     public static void main(String[] args) {
 
-        Category cat = new Category("CD");
+
         /*Product p1 = new Product("Ticket to the moon", "Description of Ticket to the moon", 18.88 );
         p1.setCategory(category);
 
@@ -23,7 +25,8 @@ public class ProductController {
         System.out.println(p2);
         System.out.println(category);*/
 
-        ProductFactory productFactory = new ProductFactoryImpl();
+        //Category cat = new Category("CD");
+        /*ProductFactory productFactory = new ProductFactoryImpl();
         cat.setCategoryId(1002);
 
         System.out.println(cat.getCategoryId());
@@ -39,7 +42,10 @@ public class ProductController {
                 "So Much Love\n" +
                 "Poorman\n" +
                 "No More (This is the Last Time)\n" +
-                "Fail", 18.99, cat);
+                "Fail", 18.99, cat);*/
 
+        //CategoryFactory categoryFactory = new CategoryFactoryImpl();
+        //categoryFactory.create("DVD");
     }
 }
+
