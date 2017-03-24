@@ -16,10 +16,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     public Product save(Product product) throws DBException{
         Connection connection = null;
-        //product is null!!!!!!!!!!!
-        System.out.println(product.getCategory());
-        System.out.println(product.getCode());
-        System.out.println(product);
+
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
