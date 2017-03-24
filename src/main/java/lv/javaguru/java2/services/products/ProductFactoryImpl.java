@@ -17,10 +17,10 @@ public class ProductFactoryImpl implements ProductFactory {
     public Product create(String code, String description, Double price, Category category) {
 
         Product product = createProduct()
-                .withCode()
-                .withDescription()
-                .withPrice()
-                .withCategory().build();
+                .withCode(code)
+                .withDescription(description)
+                .withPrice(price)
+                .withCategory(category).build();
 
         return productDAO.save(product);
     }

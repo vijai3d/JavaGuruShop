@@ -1,14 +1,14 @@
 package lv.javaguru.java2.domain.products;
 
 /**
- * Created by Vijai3D on 23.03.2017.
+ * Created by Victor on 24.03.2017.
  */
 public final class ProductBuilder {
-
     private String code;
     private String description;
     private double price;
     private Category category;
+
     private ProductBuilder() {
     }
 
@@ -16,22 +16,22 @@ public final class ProductBuilder {
         return new ProductBuilder();
     }
 
-    public ProductBuilder withCode() {
+    public ProductBuilder withCode(String code) {
         this.code = code;
         return this;
     }
 
-    public ProductBuilder withDescription() {
+    public ProductBuilder withDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public ProductBuilder withPrice() {
+    public ProductBuilder withPrice(double price) {
         this.price = price;
         return this;
     }
 
-    public ProductBuilder withCategory() {
+    public ProductBuilder withCategory(Category category) {
         this.category = category;
         return this;
     }

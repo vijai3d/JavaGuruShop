@@ -13,10 +13,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(String code, String description, double price) {
+    public Product(String code, String description, double price, Category category) {
         this.code = code;
         this.description = description;
         this.price = price;
+        this.category = category;
     }
 
     public int getProductId() {
@@ -58,7 +59,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 
     @Override
     public String toString() {
