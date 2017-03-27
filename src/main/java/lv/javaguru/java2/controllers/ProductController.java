@@ -6,6 +6,7 @@ import lv.javaguru.java2.services.products.CategoryFactory;
 import lv.javaguru.java2.services.products.CategoryFactoryImpl;
 import lv.javaguru.java2.services.products.ProductFactory;
 import lv.javaguru.java2.services.products.ProductFactoryImpl;
+import lv.javaguru.java2.utils.ValidateAndFormattInputDouble;
 
 /**
  * Created by Vijai3D on 23.03.2017.
@@ -13,7 +14,8 @@ import lv.javaguru.java2.services.products.ProductFactoryImpl;
 public class ProductController {
     public static void main(String[] args) {
 
-
+        Double d = ValidateAndFormattInputDouble.convert("1.4");
+        System.out.println(d);
         /*Product p1 = new Product("Ticket to the moon", "Description of Ticket to the moon", 18.88 );
         p1.setCategory(category);
 
