@@ -1,6 +1,6 @@
 package lv.javaguru.java2.controllers;
 
-import lv.javaguru.java2.utils.ValidateAndFormatInputDouble;
+import lv.javaguru.java2.utils.FormatInputPrice;
 
 /**
  * Created by Vijai3D on 23.03.2017.
@@ -8,7 +8,7 @@ import lv.javaguru.java2.utils.ValidateAndFormatInputDouble;
 public class ProductController {
     public static void main(String[] args) {
 
-        String s = ValidateAndFormatInputDouble.validate("1,2");
+        String s = FormatInputPrice.format("1,w229");
 
         /*Product p1 = new Product("Ticket to the moon", "Description of Ticket to the moon", 18.88 );
         p1.setCategory(category);
