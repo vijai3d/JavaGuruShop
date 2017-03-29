@@ -7,31 +7,7 @@
     <title>JSP page</title>
 </head>
 <body>
+<h1>Hellow world!</h1>
 
-    <h1>Hello ${userOpt.firstName} ${userOpt.lastName} </h1>
-
-    <div class ="container">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <h2> Users</h2>
-                    <table class="table table-hover table-sm">
-                        <thead class="thead-inverse">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="tempUser" items="${users}">
-                            <tr>
-                                <td>${tempUser.firstName}</td>
-                                <td>${tempUser.lastName}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

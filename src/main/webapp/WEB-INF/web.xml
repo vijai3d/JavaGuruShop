@@ -34,12 +34,18 @@
         <servlet-name>SessionUsageServlet</servlet-name>
         <url-pattern>/session</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.controllers.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>RedirectToJSPServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.RedirectToJSPServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>RedirectToJSPServlet</servlet-name>
         <url-pattern>/jsp</url-pattern>
