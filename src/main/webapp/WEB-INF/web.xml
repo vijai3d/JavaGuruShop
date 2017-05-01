@@ -5,27 +5,35 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <!--<servlet>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.HelloWorldServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>-->
-
 
     <servlet>
-        <servlet-name>indexServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.indexServlet</servlet-class>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>lv.javaguru.java2.servlet.ControllerServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
-        <servlet-name>indexServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/addToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/chooseLanguage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/purchase</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ParameterProcessingServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.ParameterProcessingServlet</servlet-class>

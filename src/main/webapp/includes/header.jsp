@@ -49,10 +49,10 @@
 
         <ul class="navbar-nav navbar-toggler-right">
             <li class="nav-item">
-                <a class="nav-link" href="#">CHECKOUT</a>
+                <a class="nav-link" href="/checkout">CHECKOUT</a>
             </li>
             <li class="nav-item" style="margin-top: -5px;">
-                <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true">
+                <a class="nav-link" href="/viewCart"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true">
                     <span class="badge" style="position: absolute; margin-top: -45px; margin-left: 3px;">0</span>
                 </i></a>
             </li>
