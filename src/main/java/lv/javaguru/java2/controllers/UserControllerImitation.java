@@ -19,33 +19,33 @@ public class UserControllerImitation {
     public static void main(String[] args) {
 
         //CREATE new user prototype
-        UserFactory user = new UserFactoryImpl();
-        UserService userService = new UserServiceImpl();
-        user.create("Viktors", "Antipins");
+        //UserFactory user = new UserFactoryImpl();
+        //UserService userService = new UserServiceImpl();
+        //user.create("Viktors", "Antipins");
         //UserBuilder.createUser();
 
         //UPDATE user prototype
         //getting new values from JSP form
-        Long tempId = Long.valueOf(1005);
-        String newFirstName = "Gorge";
-        String newLastName = "Mickle";
+        //Long tempId = Long.valueOf(1005);
+        //String newFirstName = "Gorge";
+        //String newLastName = "Mickle";
         //edit user by ID
-        userService.edit(tempId, newFirstName, newLastName);
+        //userService.edit(tempId, newFirstName, newLastName);
 
         //DELETE user
-        userService.delete(tempId);
+        //userService.delete(tempId);
 
         //get user by id
-        Long userId = Long.valueOf(1005);
-        Optional<User> userOpt = userService.showById(userId);
-        System.out.println(userOpt.get().getFirstName() + " " +
-         userOpt.get().getLastName());
+        //Long userId = Long.valueOf(1005);
+        //Optional<User> userOpt = userService.showById(userId);
+        //System.out.println(userOpt.get().getFirstName() + " " +
+         //userOpt.get().getLastName());
 
         //READ all userService prototype
-        List<User> userList= userService.showAll();
-        for(User u:userList) {
-            System.out.println(u.getFirstName() + " " + u.getLastName());
-        }
+       // List<User> userList= userService.showAll();
+        //for(User u:userList) {
+        //    System.out.println(u.getFirstName() + " " + u.getLastName());
+        //}
 
     }
 }
