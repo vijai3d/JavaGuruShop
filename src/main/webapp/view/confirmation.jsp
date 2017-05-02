@@ -1,4 +1,4 @@
-<jsp:include page="../../includes/header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 
 <div class="alert alert-success" role="alert">
     <strong>Order is successfully added!</strong> Confirmation order number is : [Order number]
@@ -42,4 +42,4 @@
             </div>
         </div>
     </dib>
-<jsp:include page="../../includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

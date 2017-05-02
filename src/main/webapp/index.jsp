@@ -1,5 +1,16 @@
 <jsp:include page="includes/header.jsp" />
 
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+                   url="jdbc:mysql://localhost/java_guru_shop2"
+                   user="root"  password="passw"/>
+
+<sql:query var="categories" dataSource="${dataSource}">
+    SELECT * FROM category
+</sql:query>
+
 <div class="alert alert-success" role="alert">
     <strong>Well done!</strong> You successfully read this important alert message.
 </div>
@@ -11,6 +22,9 @@
             <div class="card">
                 <div class="card-block">
                     <h2>Welcome to our new shop!</h2>
+                    <!-- test to access context parameters -->
+                    categoryImagePath: ${initParam.categoryImagePath}
+                    productImagePath: ${initParam.productImagePath}
                     <hr/>
                     <p>
                         It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
@@ -20,40 +34,19 @@
         </div>
         <div class="col-9">
             <%--right column--%>
+
                 <div class="card-deck">
+                    <c:forEach var="category" items="${categories.rows}">
                     <div class="card" style="width: 30rem;">
-                        <img class="card-img-top" src="resources/images/games.png" alt="Card image cap">
+                        <img class="card-img-top" src="${initParam.categoryImagePath}${category.name}.jpg" alt="Card image cap">
                         <div class="card-block">
-                            <h4 class="card-title">Game section</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">BUY Games</a>
+                            <h4 class="card-title">${category.name}</h4>
+                            <a href="category?${category.id}" class="btn btn-primary">BUY Games</a>
                         </div>
                     </div>
-                    <div class="card" style="width: 30rem;">
-                        <img class="card-img-top" src="resources/images/books.png" alt="Card image cap">
-                        <div class="card-block">
-                            <h4 class="card-title">Books section</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">BUY Books</a>
-                        </div>
-                    </div>
-                    <div class="card" style="width: 30rem;">
-                        <img class="card-img-top" src="resources/images/cds.jpg" alt="Card image cap">
-                        <div class="card-block">
-                            <h4 class="card-title">CD's section</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">BUY CD's</a>
-                        </div>
-                    </div>
-                    <div class="card img-thumbnail" style="width: 30rem;">
-                        <img class="card-img-top" src="resources/images/dvds.jpg" alt="Card image cap">
-                        <div class="card-block">
-                            <h4 class="card-title">DVD's section</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">BUY DVD's</a>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
+
         </div>
     </div>
 </div>

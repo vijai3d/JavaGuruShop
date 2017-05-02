@@ -1,4 +1,4 @@
-<jsp:include page="../../includes/header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 
 <div class="container" style="margin-top: 100px;">
     <table class="table table-striped">
@@ -55,4 +55,4 @@
     <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Continue shopping</a>
     <a href="#" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Proceed to checkout</a>
 </div>
-<jsp:include page="../../includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
