@@ -22,7 +22,4 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = {"lv.javaguru.java2"})
 public class SpringConfig {
-
-
-
 }

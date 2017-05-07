@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Created by Vijai3D on 01.05.2017.
  */
-
+@Component
 @WebServlet(name="ControllerServlet",
         loadOnStartup = 1,
         urlPatterns = {"/category",
@@ -33,15 +34,17 @@ import java.util.List;
                 "/purchase",
                 "/chooseLanguage"})
 public class ControllerServlet extends HttpServlet {
-    /*@Autowired    NullPointerEx
-    private CategoryService categoryService;*/
+    @Autowired
+    private CategoryService categoryService;
+
+    ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
     public void init() throws ServletException {
 
-        CategoryDAO categoryDAO = new CategoryDAOIMmpl();
+       CategoryService categoryServiceTemp = context.getBean(CategoryServiceImpl.class); //rsabotaet
 
         // store category list in servlet context
-        getServletContext().setAttribute("categories", categoryDAO.getAll());
+        getServletContext().setAttribute("categories", categoryService.getAll());
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

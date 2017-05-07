@@ -1,6 +1,7 @@
 package lv.javaguru.java2.services.products;
 
 import lv.javaguru.java2.domain.products.Category;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
