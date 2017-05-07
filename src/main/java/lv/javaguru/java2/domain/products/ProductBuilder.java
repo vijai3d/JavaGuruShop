@@ -1,12 +1,14 @@
 package lv.javaguru.java2.domain.products;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Victor on 24.03.2017.
  */
 public final class ProductBuilder {
-    private String code;
+    private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private Category category;
 
     private ProductBuilder() {
@@ -16,8 +18,8 @@ public final class ProductBuilder {
         return new ProductBuilder();
     }
 
-    public ProductBuilder withCode(String code) {
-        this.code = code;
+    public ProductBuilder withName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -26,7 +28,7 @@ public final class ProductBuilder {
         return this;
     }
 
-    public ProductBuilder withPrice(double price) {
+    public ProductBuilder withPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -38,7 +40,7 @@ public final class ProductBuilder {
 
     public Product build() {
         Product product = new Product();
-        product.setCode(code);
+        product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
         product.setCategory(category);

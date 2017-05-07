@@ -1,32 +1,35 @@
 package lv.javaguru.java2.domain.products;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
 public class Category {
 
-    private int CategoryId;
+    private Short categoryId;
     private String categoryName;
-    private List<Product> products;
+    private Collection<Product> productCollection;
 
     public Category() {
-        this.products = new ArrayList<>();
+
     }
 
-    public Category(String categoryName) {
-        this();
+    public Category(Short categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Category(Short categoryId, String categoryName) {
+        this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
-    public int getCategoryId() {
-        return CategoryId;
+    public Short getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
-        CategoryId = categoryId;
+    public void setCategoryId(Short categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
@@ -37,23 +40,16 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Collection<Product> getProductCollection() {
+        return productCollection;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductCollection(Collection<Product> productCollection) {
+        this.productCollection = productCollection;
     }
-
-    public void addProduct(Product product) {
-        this.products.add(product);
-    }
-
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryName='" + categoryName + '\'' +
-                ", products=" + products +
-                '}';
+        return "entity.Category[id=" + categoryId + "]";
     }
+
 }

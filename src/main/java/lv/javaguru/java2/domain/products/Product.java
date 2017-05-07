@@ -1,39 +1,56 @@
 package lv.javaguru.java2.domain.products;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * Created by Vijai3D on 23.03.2017.
  */
 public class Product {
-    private int productId;
-    private String code;
+    private Integer productId;
+    private String name;
+    private BigDecimal price;
     private String description;
-    private double price;
+    private Date lastUpdate;
     private Category category;
 
     public Product() {
     }
 
-    public Product(String code, String description, double price, Category category) {
-        this.code = code;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
+    public Product(Integer productId) {
         this.productId = productId;
     }
 
-    public String getCode() {
-        return code;
+    public Product(Integer productId, String name, BigDecimal price, String description, Date lastUpdate) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.lastUpdate = lastUpdate;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getDescription() {
@@ -44,12 +61,12 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
-        return price;
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public Category getCategory() {
@@ -62,12 +79,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", code='" + code + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", category=" + category.getCategoryName() +
-                '}';
+        return "entity.Product[id=" + productId + "]";
     }
 }

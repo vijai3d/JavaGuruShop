@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public User save(User user) throws DBException {
@@ -66,7 +68,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
     }
 
     public List<User> getAll() throws DBException {
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
         Connection connection = null;
         try {
             connection = getConnection();

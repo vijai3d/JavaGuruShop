@@ -2,9 +2,7 @@ package lv.javaguru.java2.services.products;
 
 import lv.javaguru.java2.domain.products.Category;
 
-import java.text.DecimalFormat;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.math.BigDecimal;
 
 /**
  * Created by Vijai3D on 26.03.2017.
@@ -12,17 +10,17 @@ import java.util.regex.Pattern;
 public class ProductValidatorImpl implements ProductValidator {
 
     @Override
-    public void validate(String code, String description, Double price, Category category) {
-        validateCode(code);
+    public void validate(String name, String description, BigDecimal price, Category category) {
+        validateName(name);
         validateDescription(description);
         validatePrice(price);
         validateCategory(category);
     }
 
-    private void validateCode(String code) {
-        if (code == null || code.isEmpty()) {
+    private void validateName(String name) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Code must be not empty!");
-        }else if (code.length() > 120) {
+        }else if (name.length() > 120) {
             throw new IllegalArgumentException("Code is too long");
         }
     }
@@ -35,13 +33,15 @@ public class ProductValidatorImpl implements ProductValidator {
         }
     }
 
-    private void validatePrice(Double price) {
-
+    private void validatePrice(BigDecimal price) {
+        Double temp = Double.valueOf(String.valueOf(price));
         if (price == null ) {
             throw new IllegalArgumentException("Price must be not empty!");
-        }else if (price.isNaN()) {
+        }else if (Double.isNaN(temp)){
             throw new IllegalArgumentException("Price must br numeric");
-        }
+            }
+
+
     }
 
     private void validateCategory(Category category) {

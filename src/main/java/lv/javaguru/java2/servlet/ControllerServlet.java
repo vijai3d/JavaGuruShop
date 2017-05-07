@@ -1,11 +1,23 @@
 package lv.javaguru.java2.servlet;
 
+import lv.javaguru.java2.configs.SpringConfig;
+import lv.javaguru.java2.database.jdbc.product.CategoryDAOIMmpl;
+import lv.javaguru.java2.database.product.CategoryDAO;
+import lv.javaguru.java2.domain.products.Category;
+import lv.javaguru.java2.services.products.CategoryService;
+import lv.javaguru.java2.services.products.CategoryServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Vijai3D on 01.05.2017.
@@ -21,9 +33,20 @@ import java.io.IOException;
                 "/purchase",
                 "/chooseLanguage"})
 public class ControllerServlet extends HttpServlet {
+    /*@Autowired    NullPointerEx
+    private CategoryService categoryService;*/
+
+    public void init() throws ServletException {
+
+        CategoryDAO categoryDAO = new CategoryDAOIMmpl();
+
+        // store category list in servlet context
+        getServletContext().setAttribute("categories", categoryDAO.getAll());
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String userPath = request.getServletPath();
+
 
         // if addToCart action is called
         if (userPath.equals("/addToCart")) {

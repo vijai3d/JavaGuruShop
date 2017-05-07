@@ -3,13 +3,12 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+<%--<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                    url="jdbc:mysql://localhost/java_guru_shop2"
                    user="root"  password="passw"/>
-
 <sql:query var="categories" dataSource="${dataSource}">
     SELECT * FROM category
-</sql:query>
+</sql:query>--%>
 
 <div class="alert alert-success" role="alert">
     <strong>Well done!</strong> You successfully read this important alert message.
@@ -36,12 +35,12 @@
             <%--right column--%>
 
                 <div class="card-deck">
-                    <c:forEach var="category" items="${categories.rows}">
+                    <c:forEach var="category" items="${categories}">
                     <div class="card" style="width: 30rem;">
-                        <img class="card-img-top" src="${initParam.categoryImagePath}${category.name}.jpg" alt="Card image cap">
+                        <img class="card-img-top" src="${initParam.categoryImagePath}${category.categoryName}.jpg" alt="Card image cap">
                         <div class="card-block">
-                            <h4 class="card-title">${category.name}</h4>
-                            <a href="category?${category.id}" class="btn btn-primary">BUY Games</a>
+                            <h4 class="card-title">${category.categoryName}</h4>
+                            <a href="category?${category.categoryId}" class="btn btn-primary">BUY Games</a>
                         </div>
                     </div>
                     </c:forEach>

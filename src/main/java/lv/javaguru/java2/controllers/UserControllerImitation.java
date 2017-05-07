@@ -1,12 +1,24 @@
 package lv.javaguru.java2.controllers;
 
+
+import lv.javaguru.java2.database.jdbc.DAOImpl;
+import lv.javaguru.java2.database.jdbc.product.CategoryDAOIMmpl;
+
+import lv.javaguru.java2.database.product.CategoryDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserBuilder;
+import lv.javaguru.java2.domain.products.Category;
 import lv.javaguru.java2.services.UserFactory;
 import lv.javaguru.java2.services.UserFactoryImpl;
 import lv.javaguru.java2.services.UserService;
 import lv.javaguru.java2.services.UserServiceImpl;
+import lv.javaguru.java2.services.products.CategoryService;
+import lv.javaguru.java2.services.products.CategoryServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +28,10 @@ import java.util.Optional;
 //Simple CRUD operations without servlet controllers
 public class UserControllerImitation {
 
+
     public static void main(String[] args) {
+
+
 
         //CREATE new user prototype
         //UserFactory user = new UserFactoryImpl();
