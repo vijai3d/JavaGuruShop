@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
+<%--<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                    url="jdbc:mysql://localhost/java_guru_shop2"
                    user="root" password="passw"/>
 
@@ -20,7 +20,7 @@
 <sql:query var="categoryProducts" dataSource="${dataSource}">
     SELECT * FROM product WHERE category_id=?
     <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>
+</sql:query>--%>
 
 <div class="alert alert-success" role="alert">
     <strong>Well done!</strong> You successfully read this important alert message.
@@ -33,16 +33,16 @@
                 <div class="card-block">
                     <h4>Categories:</h4>
                     <div class="list-group">
-                        <c:forEach var="category" items="${categories.rows}">
+                        <c:forEach var="category" items="${categories}">
                             <c:choose>
-                                <c:when test="${category.id == pageContext.request.queryString}">
+                                <c:when test="${category.categoryId == pageContext.request.queryString}">
                                     <div class="list-group-item active">
-                                            ${category.name}
+                                            ${category.categoryName}
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="category?${category.id}" class="list-group-item list-group-item-action">
-                                            ${category.name}
+                                    <a href="category?${category.categoryId}" class="list-group-item list-group-item-action">
+                                            ${category.categoryName}
                                     </a>
                                 </c:otherwise>
                             </c:choose>

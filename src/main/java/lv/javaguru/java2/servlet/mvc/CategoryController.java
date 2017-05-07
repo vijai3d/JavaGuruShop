@@ -10,20 +10,24 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Vijai3D on 07.05.2017.
  */
 @Component
-public class HomeController implements MVCController{
+public class CategoryController implements MVCController{
+
     @Autowired
     private CategoryService categoryService;
-
     @Override
     public MVCModel processGet(HttpServletRequest request) {
         request.setAttribute("categories", categoryService.getAll());
-        return new MVCModel("/index.jsp");
 
+            String categoryId = request.getQueryString();
+        if (categoryId != null) {
+            Short selectedCategory = categoryService.find(Short.parseShort(categoryId));
+            request.setAttribute("selectedCategory", selectedCategory);
+        }
+        return new MVCModel("/view/category.jsp");
     }
 
     @Override
     public MVCModel processPost(HttpServletRequest request) {
-
         return null;
     }
 }
