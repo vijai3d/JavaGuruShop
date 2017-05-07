@@ -5,12 +5,21 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <filter>
+        <filter-name>MVCFilter</filter-name>
+        <filter-class>lv.javaguru.java2.servlet.mvc.MVCFilter</filter-class>
+    </filter>
 
-    <servlet>
+    <filter-mapping>
+        <filter-name>MVCFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--<servlet>
         <servlet-name>ControllerServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.ControllerServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+    </servlet>-->
+    <!--<servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/category</url-pattern>
     </servlet-mapping>
@@ -33,7 +42,7 @@
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/purchase</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
     <servlet>
         <servlet-name>ParameterProcessingServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.ParameterProcessingServlet</servlet-class>

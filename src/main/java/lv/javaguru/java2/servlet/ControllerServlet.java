@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by Vijai3D on 01.05.2017.
  */
-@Component
+
 @WebServlet(name="ControllerServlet",
         loadOnStartup = 1,
         urlPatterns = {"/category",
@@ -34,15 +34,13 @@ import java.util.List;
                 "/purchase",
                 "/chooseLanguage"})
 public class ControllerServlet extends HttpServlet {
-    @Autowired
-    private CategoryService categoryService;
 
-    ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+    CategoryService categoryService = new CategoryServiceImpl();
+
+
 
     public void init() throws ServletException {
-
-       CategoryService categoryServiceTemp = context.getBean(CategoryServiceImpl.class); //rsabotaet
-
+        System.out.println("init");
         // store category list in servlet context
         getServletContext().setAttribute("categories", categoryService.getAll());
     }
