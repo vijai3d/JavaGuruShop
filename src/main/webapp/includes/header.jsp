@@ -22,7 +22,7 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/index">
         <img src="../resources/images/logo.png" width="30" height="30" alt="">
     </a>
 
