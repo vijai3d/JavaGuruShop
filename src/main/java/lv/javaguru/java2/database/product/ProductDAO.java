@@ -19,4 +19,6 @@ public interface ProductDAO {
     void update(Product product);
 
     List<Product> getAll();
+
+    List<Product> getAllByCategory(int categoryId);
 }

@@ -1,6 +1,8 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.configs.SpringConfig;
+import lv.javaguru.java2.controllers.CategoryController;
+import lv.javaguru.java2.controllers.HomeController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

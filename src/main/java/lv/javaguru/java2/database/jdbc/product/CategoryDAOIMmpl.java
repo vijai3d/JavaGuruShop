@@ -17,9 +17,7 @@ import java.util.Optional;
  */
 @Component
 public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
-    public void test() {
-        System.out.println("test");
-    }
+
     @Override
     public Category save(Category category) throws DBException {
         System.out.println("im in CDI save");
@@ -46,8 +44,30 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
     }
 
     @Override
-    public Optional<Category> getById(Short id) {
-        return null;
+    public Optional<Category> findById(Short categoryId) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from category where id = ?");
+            preparedStatement.setShort(1, categoryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Category category = null;
+            if (resultSet.next()) {
+                category = new Category();
+                category.setCategoryId(resultSet.getShort("id"));
+                category.setCategoryName(resultSet.getString("name"));
+
+            }
+            return Optional.ofNullable(category);
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getById()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
@@ -62,7 +82,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
 
     @Override
     public List<Category> getAll() throws DBException {
-        System.out.println("we are in CDI.getAll");
+
         List<Category> categories = new ArrayList<>();
         Connection connection = null;
         try {

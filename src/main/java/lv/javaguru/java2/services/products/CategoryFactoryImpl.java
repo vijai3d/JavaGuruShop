@@ -20,7 +20,8 @@ public class CategoryFactoryImpl  implements CategoryFactory{
     public Category create(String categoryName) {
 
         Category category = createCategory()
-                .withCategoryName(categoryName).build();
+                .withCategoryName(categoryName)
+                .build();
 
         return categoryDAO.save(category);
     }

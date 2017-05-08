@@ -9,7 +9,7 @@ public class Category {
 
     private Short categoryId;
     private String categoryName;
-    private Collection<Product> productCollection;
+    //private Collection<Product> productCollection;
 
     public Category() {
 
@@ -40,13 +40,13 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public Collection<Product> getProductCollection() {
+    /*public Collection<Product> getProductCollection() {
         return productCollection;
     }
 
     public void setProductCollection(Collection<Product> productCollection) {
         this.productCollection = productCollection;
-    }
+    }*/
     @Override
     public String toString() {
         return "entity.Category[id=" + categoryId + "]";

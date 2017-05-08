@@ -1,8 +1,11 @@
 <%--footer--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="date" class="java.util.Date" />
+
 <div style="margin-top: 100px;">
     <footer class="navbar navbar-inverse bg-inverse">
         <div class="container-fluid" style="padding-top: 20px; padding-bottom: 20px;">
-            <span class="text-muted">JavaGuruShop&copy; 2016 -</span>
+            <span class="text-muted">JavaGuruShop&copy; 2016 - <fmt:formatDate value="${date}" pattern="yyyy" /></span>
         </div>
     </footer>
 </div>

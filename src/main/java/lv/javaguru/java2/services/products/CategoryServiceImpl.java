@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Vijai3D on 06.05.2017.
@@ -22,9 +23,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAll() {
-        System.out.println("catList from CategoryServiceImpl");
+
         List<Category> categoryList = categoryDAO.getAll();
 
         return categoryList;
+    }
+
+    @Override
+    public Optional<Category> findById(Short categoryId) {
+        Optional<Category> category = categoryDAO.findById(categoryId);
+        return category;
     }
 }

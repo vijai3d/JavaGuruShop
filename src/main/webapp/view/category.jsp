@@ -54,13 +54,13 @@
         <div class="col-10">
             <div class="card">
                 <div class="navbar navbar-light bg-faded">
-                    <h4 class="navbar-brand">${selectedCategory.rows[0].name}</h4>
+                    <h4 class="navbar-brand">Explore our new ${selectedCategory.categoryName} collection</h4>
                 </div>
             </div>
             <hr/>
             <%--right column--%>
             <div class="row">
-                <c:forEach var="product" items="${categoryProducts.rows}">
+                <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
                     <div class="col-sm-12 col-md-4 col-lg-3">
                         <div class="card card-block">
                             <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180"
@@ -75,7 +75,7 @@
                                 <form action="addToCart" method="post">
                                     <input type="hidden"
                                            name="productId"
-                                           value="${product.id}">
+                                           value="${product.productId}">
                                     <input type="submit" value="Add to cart"
                                     >
                                 </form>

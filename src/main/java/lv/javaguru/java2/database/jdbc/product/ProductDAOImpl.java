@@ -88,4 +88,32 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
         }
         return products;
     }
+
+    @Override
+    public List<Product> getAllByCategory(int categoryId) throws DBException {
+        List<Product> products = new ArrayList<Product>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from PRODUCT WHERE category_id = ?");
+            preparedStatement.setShort(1, (short) categoryId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getBigDecimal("price"));
+                product.setDescription(resultSet.getString("description"));
+                products.add(product);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while getting customer list ProductDAOImpl.getList()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+        return products;
+
+    }
 }

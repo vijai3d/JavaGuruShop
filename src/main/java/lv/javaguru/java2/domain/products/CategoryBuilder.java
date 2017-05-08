@@ -37,7 +37,7 @@ public final class CategoryBuilder {
         Category category = new Category();
         category.setCategoryId(categoryId);
         category.setCategoryName(categoryName);
-        category.setProductCollection(products);
+        //category.setProductCollection(products);
         return category;
     }
 }
