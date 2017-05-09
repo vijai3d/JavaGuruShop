@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="view" value="/cart" scope="session"/>
 
 <!doctype html>
 <html lang="en">
@@ -48,12 +50,14 @@
         </ul>
 
         <ul class="navbar-nav navbar-toggler-right">
+            <c:if test="${!empty cart}">
             <li class="nav-item">
                 <a class="nav-link" href="/checkout">CHECKOUT</a>
             </li>
+            </c:if>
             <li class="nav-item" style="margin-top: -5px;">
                 <a class="nav-link" href="/viewCart"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true">
-                    <span class="badge" style="position: absolute; margin-top: -45px; margin-left: 3px;">0</span>
+                    <span class="badge" style="position: absolute; margin-top: -45px; margin-left: 3px;">${cart.numberOfItems}</span>
                 </i></a>
             </li>
             <li class="nav-item">

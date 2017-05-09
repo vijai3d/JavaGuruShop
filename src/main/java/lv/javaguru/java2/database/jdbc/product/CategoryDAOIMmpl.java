@@ -5,7 +5,6 @@ import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.database.product.CategoryDAO;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,7 +43,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
     }
 
     @Override
-    public Optional<Category> findById(Short categoryId) throws DBException {
+    public Category findById(Short categoryId) throws DBException {
         Connection connection = null;
 
         try {
@@ -60,7 +59,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
                 category.setCategoryName(resultSet.getString("name"));
 
             }
-            return Optional.ofNullable(category);
+            return category;
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.getById()");
             e.printStackTrace();

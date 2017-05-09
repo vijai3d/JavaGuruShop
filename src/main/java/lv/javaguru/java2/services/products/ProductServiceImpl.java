@@ -32,4 +32,10 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productListByCategory = productDAO.getAllByCategory(categoryId);
         return productListByCategory;
     }
+
+    @Override
+    public Product findById(int productId) {
+        Product product = productDAO.findById(productId);
+        return product;
+    }
 }

@@ -48,8 +48,31 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
     }
 
     @Override
-    public Optional<Product> getById(int id) {
-        return null;
+    public Product findById(int productId) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from product where id = ?");
+            preparedStatement.setInt(1, productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Product product = null;
+            if (resultSet.next()) {
+                product = new Product();
+                product.setProductId(resultSet.getInt("id"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getBigDecimal("price"));
+                product.setDescription(resultSet.getString("description"));
+            }
+            return product;
+        } catch (Throwable e) {
+            System.out.println("Exception while execute ProductDAOImpl.findById()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
     }
 
     @Override
@@ -95,7 +118,7 @@ public class ProductDAOImpl extends DAOImpl implements ProductDAO {
         Connection connection = null;
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from PRODUCT WHERE category_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from product WHERE category_id = ?");
             preparedStatement.setShort(1, (short) categoryId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

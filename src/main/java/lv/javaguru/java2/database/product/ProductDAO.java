@@ -12,7 +12,7 @@ public interface ProductDAO {
 
     Product save(Product product);
 
-    Optional<Product> getById(int id);
+    Product findById(int id);
 
     void delete(int id);
 

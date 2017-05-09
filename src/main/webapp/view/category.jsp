@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
+<c:set var="view" value="/category" scope="session" />
 <%--<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                    url="jdbc:mysql://localhost/java_guru_shop2"
                    user="root" password="passw"/>
@@ -71,13 +72,14 @@
                             <div class="card-block">
                                 <h4 class="card-title">${product.name}</h4>
                                 <p class="card-text">${fn:substring(product.description, 0, 22)}...</p>
-                                <p class="card-text">${product.price}</p>
+                                <p class="card-text">&euro;${product.price}</p>
                                 <form action="addToCart" method="post">
                                     <input type="hidden"
                                            name="productId"
                                            value="${product.productId}">
-                                    <input type="submit" value="Add to cart"
-                                    >
+                                    <input type="submit"
+                                           name="submit"
+                                           value="Add to cart">
                                 </form>
                             </div>
                         </div>

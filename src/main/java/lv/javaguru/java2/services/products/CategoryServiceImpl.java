@@ -30,8 +30,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Optional<Category> findById(Short categoryId) {
-        Optional<Category> category = categoryDAO.findById(categoryId);
+    public Category findById(Short categoryId) {
+        Category category = categoryDAO.findById(categoryId);
         return category;
     }
 }
