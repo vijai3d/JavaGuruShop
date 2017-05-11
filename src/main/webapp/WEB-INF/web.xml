@@ -15,34 +15,12 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--<servlet>
-        <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>lv.javaguru.java2.servlet.ControllerServlet</servlet-class>
-    </servlet>-->
-    <!--<servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/category</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/addToCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/viewCart</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/checkout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/chooseLanguage</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/purchase</url-pattern>
-    </servlet-mapping>-->
+    <session-config>
+        <session-timeout>
+            10
+        </session-timeout>
+    </session-config>
+
     <servlet>
         <servlet-name>ParameterProcessingServlet</servlet-name>
         <servlet-class>lv.javaguru.java2.servlet.ParameterProcessingServlet</servlet-class>

@@ -45,6 +45,6 @@ public class AddToCartController implements MVCController{
 
         }
 
-        return new MVCModel("/view/cart.jsp");
+        return new MVCModel("/view/category.jsp");
     }
 }

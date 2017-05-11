@@ -33,7 +33,7 @@ public class CategoryController implements MVCController {
         HttpSession session = request.getSession();
 
             // get All categories
-        request.setAttribute("categories", categoryService.getAll());
+        session.setAttribute("categories", categoryService.getAll());
 
             String categoryId = request.getQueryString();
 

@@ -1,4 +1,7 @@
 <jsp:include page="../includes/header.jsp"/>
+
+<c:set var="view" value="/checkout" scope="session"/>
+
 <div class="container">
     <h2>Checkout</h2>
     <div class="container">

@@ -1,10 +1,7 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.configs.SpringConfig;
-import lv.javaguru.java2.controllers.AddToCartController;
-import lv.javaguru.java2.controllers.CategoryController;
-import lv.javaguru.java2.controllers.HomeController;
-import lv.javaguru.java2.controllers.ViewCartController;
+import lv.javaguru.java2.controllers.*;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -57,6 +54,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/category", getBean(CategoryController.class));
         controllerMapping.put("/addToCart", getBean(AddToCartController.class));
         controllerMapping.put("/viewCart", getBean(ViewCartController.class));
+        controllerMapping.put("/checkout", getBean(CheckoutController.class));
     }
 
     @Override
