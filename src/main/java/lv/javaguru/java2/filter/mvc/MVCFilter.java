@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlet.mvc;
+package lv.javaguru.java2.filter.mvc;
 
 import lv.javaguru.java2.configs.SpringConfig;
 import lv.javaguru.java2.controllers.*;
@@ -16,6 +16,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +56,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/addToCart", getBean(AddToCartController.class));
         controllerMapping.put("/viewCart", getBean(ViewCartController.class));
         controllerMapping.put("/checkout", getBean(CheckoutController.class));
+        controllerMapping.put("/updateCart", getBean(UpdateController.class));
     }
 
     @Override
@@ -64,6 +66,18 @@ public class MVCFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)request;
         HttpServletResponse resp = (HttpServletResponse)response;
         String contextURI = req.getServletPath();
+        HttpSession session = req.getSession(false);
+
+        // if session doesn't exist, forward user to index page
+        if (session == null) {
+            try {
+                req.getRequestDispatcher("/index.jsp").forward(request, response);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return;
+        }
+
         if (controllerMapping.keySet().contains(contextURI)){
             MVCController controller = controllerMapping.get(contextURI);
 

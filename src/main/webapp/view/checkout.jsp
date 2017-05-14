@@ -57,11 +57,30 @@
         <div class="row">
             <div class="card">
                 <h4>[Purchase conditions]</h4>
+                ${initParam.deliverySurcharge}
             </div>
         </div>
         <div class="row">
             <div class="card">
-                <h4>[Purchase calculations: shipping + total]</h4>
+
+
+                <table id="priceBox">
+                    <tr>
+                        <td>subtotal:</td>
+                        <td>
+                            ${cart.subtotal}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping and packaging:</td>
+                        <td>
+                            &euro; ${surcharge}</td>
+                    </tr>
+                    <tr>
+                        <td>total:</td>
+                        <td>
+                           &euro; ${cart.total}</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

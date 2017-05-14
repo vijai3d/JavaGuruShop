@@ -5,6 +5,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <c:set var="view" value="/category" scope="session" />
+
 <%--<sql:setDataSource var="dataSource" driver="com.mysql.jdbc.Driver"
                    url="jdbc:mysql://localhost/java_guru_shop2"
                    user="root" password="passw"/>
@@ -22,10 +23,20 @@
     SELECT * FROM product WHERE category_id=?
     <sql:param value="${pageContext.request.queryString}"/>
 </sql:query>--%>
+<c:if test="${pageContext.request.getParameter('submit') != null}">
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success!</strong> Product is added!
+    </div>
+</c:if>
 
-<div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
-</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-2">
@@ -77,7 +88,7 @@
                                     <input type="hidden"
                                            name="productId"
                                            value="${product.productId}">
-                                    <input type="submit"
+                                    <input class="btn btn-primary"  type="submit"
                                            name="submit"
                                            value="Add to cart">
                                 </form>

@@ -1,8 +1,8 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.services.products.CategoryService;
-import lv.javaguru.java2.servlet.mvc.MVCController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
+import lv.javaguru.java2.filter.mvc.MVCController;
+import lv.javaguru.java2.filter.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

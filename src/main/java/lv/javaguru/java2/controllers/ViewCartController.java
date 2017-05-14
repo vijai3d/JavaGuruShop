@@ -1,8 +1,8 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.cart.ShoppingCart;
-import lv.javaguru.java2.servlet.mvc.MVCController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
+import lv.javaguru.java2.filter.mvc.MVCController;
+import lv.javaguru.java2.filter.mvc.MVCModel;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;

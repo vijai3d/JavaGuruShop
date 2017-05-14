@@ -10,9 +10,6 @@
     SELECT * FROM category
 </sql:query>--%>
 
-<div class="alert alert-success" role="alert">
-    <strong>Well done!</strong> You successfully read this important alert message.
-</div>
 
 <div class="container-fluid">
     <div class="row">
