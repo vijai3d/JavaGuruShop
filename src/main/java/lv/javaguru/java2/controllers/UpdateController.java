@@ -1,7 +1,7 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.cart.ShoppingCart;
-import lv.javaguru.java2.cart.Validator;
+import lv.javaguru.java2.validators.Validator;
 import lv.javaguru.java2.domain.products.Product;
 import lv.javaguru.java2.filter.mvc.MVCController;
 import lv.javaguru.java2.filter.mvc.MVCModel;

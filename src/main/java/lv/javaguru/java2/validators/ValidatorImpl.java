@@ -6,7 +6,7 @@
  * http://developer.sun.com/berkeley_license.html
  */
 
-package lv.javaguru.java2.cart;
+package lv.javaguru.java2.validators;
 
 import org.springframework.stereotype.Component;
 
@@ -52,8 +52,8 @@ public class ValidatorImpl implements Validator {
                                 String email,
                                 String phone,
                                 String address,
-                                String cityRegion,
-                                String ccNumber,
+                                String city,
+                                String country,
                                 HttpServletRequest request) {
 
         boolean errorFlag = false;
@@ -61,8 +61,8 @@ public class ValidatorImpl implements Validator {
         boolean emailError;
         boolean phoneError;
         boolean addressError;
-        boolean cityRegionError;
-        boolean ccNumberError;
+        boolean cityError;
+        boolean countryError;
 
         if (name == null
                 || name.equals("")
@@ -92,19 +92,19 @@ public class ValidatorImpl implements Validator {
             addressError = true;
             request.setAttribute("addressError", addressError);
         }
-        if (cityRegion == null
-                || cityRegion.equals("")
-                || cityRegion.length() > 2) {
+        if (city == null
+                || city.equals("")
+                || city.length() > 20) {
             errorFlag = true;
-            cityRegionError = true;
-            request.setAttribute("cityRegionError", cityRegionError);
+            cityError = true;
+            request.setAttribute("cityError", cityError);
         }
-        if (ccNumber == null
-                || ccNumber.equals("")
-                || ccNumber.length() > 19) {
+        if (country == null
+                || country.equals("")
+                || country.length() > 20) {
             errorFlag = true;
-            ccNumberError = true;
-            request.setAttribute("ccNumberError", ccNumberError);
+            countryError = true;
+            request.setAttribute("countryError", countryError);
         }
 
         return errorFlag;

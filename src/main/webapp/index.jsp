@@ -10,7 +10,6 @@
     SELECT * FROM category
 </sql:query>--%>
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
@@ -27,7 +26,6 @@
         </div>
         <div class="col-9">
             <%--right column--%>
-
                 <div class="card-deck">
                     <c:forEach var="category" items="${categories}">
                     <div class="card" style="width: 30rem;">
@@ -39,7 +37,6 @@
                     </div>
                     </c:forEach>
                 </div>
-
         </div>
     </div>
 </div>

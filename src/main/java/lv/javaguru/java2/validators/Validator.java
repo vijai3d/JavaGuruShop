@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cart;
+package lv.javaguru.java2.validators;
 
 import javax.servlet.http.HttpServletRequest;
 

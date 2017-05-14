@@ -23,8 +23,9 @@ public class CheckoutController  implements MVCController{
     public MVCModel processGet(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-
+        boolean validationErrorFlag = false;
         request.setAttribute("surcharge", surcharge);
+        request.setAttribute("validationErrorFlag", validationErrorFlag);
         // calculate total + surcharge
         cart.calculateTotal(surcharge);
 
