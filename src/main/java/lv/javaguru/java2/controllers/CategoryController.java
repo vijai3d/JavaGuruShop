@@ -1,6 +1,7 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.domain.products.Category;
+import lv.javaguru.java2.services.CustomerService;
 import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductService;
 import lv.javaguru.java2.filter.mvc.MVCController;
