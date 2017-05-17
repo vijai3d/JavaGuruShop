@@ -51,7 +51,7 @@ public class MVCFilter implements Filter {
 
     public void putControllersIntoMap() throws Exception {
         controllerMapping = new HashMap();
-        controllerMapping.put("/index", getBean(HomeController.class));
+        controllerMapping.put("/", getBean(HomeController.class));
         controllerMapping.put("/category", getBean(CategoryController.class));
         controllerMapping.put("/addToCart", getBean(AddToCartController.class));
         controllerMapping.put("/viewCart", getBean(ViewCartController.class));
