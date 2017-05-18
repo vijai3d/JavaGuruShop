@@ -80,7 +80,7 @@ public class ValidatorImpl implements Validator {
         }
         if (phone == null
                 || phone.equals("")
-                || phone.length() < 9) {
+                || phone.length() < 8) {
             errorFlag = true;
             phoneError = true;
             request.setAttribute("phoneError", phoneError);

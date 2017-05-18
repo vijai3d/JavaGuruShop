@@ -1,11 +1,13 @@
 package lv.javaguru.java2.domain.products;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
+@Entity
 public class Product {
     private Integer productId;
     private String name;

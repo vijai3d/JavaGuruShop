@@ -18,39 +18,92 @@
         </c:if>
         <div class="card">
             <div class="container">
+
                 <form action="purchase" method="post">
                     <c:if test="${!empty validationErrorFlag}">
                     <div class="form-group">
                         <label for="name">First name and last name:</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control"
+                               size="31"
+                               maxlength="45"
+                               id="name"
+                               name="name"
+                               value="${param.name}">
+                        <c:if test="${!empty nameError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                     </div>
                     <div class="form-group">
                     <label for="phone">Phone:</label>
-                    <input type="text" class="form-control" id="phone">
+                    <input type="text" class="form-control"
+                           size="31"
+                           maxlength="16"
+                           id="phone"
+                           name="phone"
+                           value="${param.phone}">
+                        <c:if test="${!empty phoneError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                 </div>
                     <div class="form-group">
                         <label for="country">Country:</label>
-                        <input type="text" class="form-control" id="country">
+                        <input type="text" class="form-control"
+                               size="31"
+                               maxlength="45"
+                               id="country"
+                               name="country"
+                               value="${param.country}">
+                        <c:if test="${!empty countryError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="city">City:</label>
-                        <input type="text" class="form-control" id="city">
+                        <input type="text" class="form-control"
+                               size="31"
+                               maxlength="45"
+                               id="city"
+                               name="city"
+                               value="${param.city}">
+                        <c:if test="${!empty cityError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input type="text" class="form-control" id="address">
+                        <input type="text" class="form-control"
+                               size="31"
+                               maxlength="45"
+                               id="address"
+                               name="address"
+                               value="${param.address}">
+                        <c:if test="${!empty addressError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd2">Confirm password:</label>
-                        <input type="password" class="form-control" id="pwd2">
+                        <input type="email" class="form-control"
+                               size="31"
+                               maxlength="45"
+                               id="email"
+                               name="email"
+                               value="${param.email}">
+                        <c:if test="${!empty emailError}">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Please correct</strong> This field cannot be empty or too long.
+                            </div>
+                        </c:if>
                     </div>
 
                     <button type="submit" class="btn btn-default">Submit</button>

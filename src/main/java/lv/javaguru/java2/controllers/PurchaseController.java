@@ -1,6 +1,7 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.cart.ShoppingCart;
+import lv.javaguru.java2.services.OrderManager;
 import lv.javaguru.java2.validators.Validator;
 import lv.javaguru.java2.filter.mvc.MVCController;
 import lv.javaguru.java2.filter.mvc.MVCModel;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpSession;
  */
 @Component
 public class PurchaseController implements MVCController {
+    @Autowired
+    private OrderManager orderManager;
 
     @Autowired
     private Validator validator;
@@ -38,6 +41,8 @@ public class PurchaseController implements MVCController {
             String address = request.getParameter("address");
             String city = request.getParameter("city");
             String country = request.getParameter("country");
+
+            int orderId = orderManager.placeOrder(name, email, phone, address, city, country, cart);
 
             // validate user data
             boolean validationErrorFlag = false;
