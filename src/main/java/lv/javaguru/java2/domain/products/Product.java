@@ -1,20 +1,44 @@
 package lv.javaguru.java2.domain.products;
 
-import javax.persistence.Entity;
+import lv.javaguru.java2.domain.orders.OrderedProduct;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
+@Table(name = "product")
 public class Product {
-    private Integer productId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name = "id")
+    Integer productId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "last_update")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private Category category;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Collection<OrderedProduct> orderedProductCollection;
 
     public Product() {
     }

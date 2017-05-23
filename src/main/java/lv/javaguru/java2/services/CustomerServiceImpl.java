@@ -1,6 +1,6 @@
 package lv.javaguru.java2.services;
 
-import lv.javaguru.java2.database.CustomerDAO;
+import lv.javaguru.java2.database.hibernate.CustomerDAO;
 import lv.javaguru.java2.domain.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

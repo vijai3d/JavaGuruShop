@@ -1,6 +1,6 @@
-package lv.javaguru.java2.database.jdbc;
+package lv.javaguru.java2.database.hibernate;
 
-import lv.javaguru.java2.database.CustomerDAO;
+import lv.javaguru.java2.database.hibernate.CustomerDAO;
 import lv.javaguru.java2.domain.customer.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

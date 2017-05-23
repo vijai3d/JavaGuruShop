@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database;
+package lv.javaguru.java2.database.hibernate;
 
 import lv.javaguru.java2.domain.customer.Customer;
 

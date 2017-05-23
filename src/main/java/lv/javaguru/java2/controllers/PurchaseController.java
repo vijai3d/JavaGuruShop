@@ -22,6 +22,7 @@ public class PurchaseController implements MVCController {
 
     @Autowired
     private Validator validator;
+
     @Override
     public MVCModel processGet(HttpServletRequest request) {
         return null;

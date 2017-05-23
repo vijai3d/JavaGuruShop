@@ -7,6 +7,8 @@ import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.orders.OrderedProduct;
 import lv.javaguru.java2.domain.orders.OrderedProductPK;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +21,12 @@ import java.util.Random;
  * Created by Vijai3D on 18.05.2017.
  */
 @Component
-@Transactional
 public class OrderManager {
 
     @Autowired
-    private CustomerService customerService;
+    private SessionFactory sessionFactory;
 
-    @Transactional(rollbackFor={DBException.class})
+    @Transactional
     public int placeOrder(String name, String email, String phone, String address, String city, String country, ShoppingCart cart) {
 
             Customer customer = addCustomer(name, email, phone, address, city, country);
@@ -44,13 +45,13 @@ public class OrderManager {
         customer.setAddress(address);
         customer.setCity(cityRegion);
         customer.setCountry(ccNumber);
-
-        customerService.addCustomer(customer);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(customer);
         return customer;
     }
     private CustomerOrder addOrder(Customer customer, ShoppingCart cart) {
 
-        // TODO set up customer order
+
         CustomerOrder order = new CustomerOrder();
         order.setCustomer(customer);
         order.setAmount(BigDecimal.valueOf(cart.getTotal()));
@@ -59,21 +60,21 @@ public class OrderManager {
         Random random = new Random();
         int i = random.nextInt(999999999);
         order.setConfirmationNumber(i);
-
-        em.persist(order);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(order);
         return order;
     }
 
     private void addOrderedItems(CustomerOrder order, ShoppingCart cart) {
-
-        em.flush();
+        Session session = sessionFactory.getCurrentSession();
+        session.flush();
 
         List<ShoppingCartItem> items = cart.getItems();
 
         // iterate through shopping cart and create OrderedProducts
         for (ShoppingCartItem scItem : items) {
 
-            int productId = scItem.getProduct().getId();
+            int productId = scItem.getProduct().getProductId();
 
             // set up primary key object
             OrderedProductPK orderedProductPK = new OrderedProductPK();
@@ -86,7 +87,7 @@ public class OrderManager {
             // set quantity
             orderedItem.setQuantity(scItem.getQuantity());
 
-            em.persist(orderedItem);
+            session.persist(orderedItem);
         }
     }
 

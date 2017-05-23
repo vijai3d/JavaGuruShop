@@ -1,10 +1,12 @@
 package lv.javaguru.java2.domain.products;
 
+import javax.persistence.Entity;
 import java.util.Collection;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
+@Entity
 public class Category {
 
     private Short categoryId;
