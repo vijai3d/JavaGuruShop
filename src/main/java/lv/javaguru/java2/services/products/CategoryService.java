@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface CategoryService {
 //    TODO create more services
-    void delete(int categoryId);
+    void delete(Short categoryId);
 
     List<Category> getAll();
 
-    Category findById(Short categoryId);
+    Category getById(Short categoryId);
 
 }

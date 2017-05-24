@@ -14,6 +14,7 @@ import lv.javaguru.java2.services.UserService;
 import lv.javaguru.java2.services.UserServiceImpl;
 import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.CategoryServiceImpl;
+import lv.javaguru.java2.services.products.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -26,11 +27,10 @@ import java.util.Optional;
  * Created by Vijai3D on 22.03.2017.
  */
 //Simple CRUD operations without servlet controllers
+
 public class UserControllerImitation {
 
-
     public static void main(String[] args) {
-
 
 
         //CREATE new user prototype

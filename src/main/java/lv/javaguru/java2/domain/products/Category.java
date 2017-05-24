@@ -1,17 +1,27 @@
 package lv.javaguru.java2.domain.products;
 
-import javax.persistence.Entity;
+import org.hibernate.annotations.Proxy;
+
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
+@Proxy(lazy = false)
+@Table(name = "category")
 public class Category {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private Short categoryId;
+
+    @Column(name = "name")
     private String categoryName;
-    //private Collection<Product> productCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    private Collection<Product> productCollection;
 
     public Category() {
 
@@ -26,7 +36,7 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public Short getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
@@ -42,16 +52,19 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    /*public Collection<Product> getProductCollection() {
+    public Collection<Product> getProductCollection() {
         return productCollection;
     }
 
     public void setProductCollection(Collection<Product> productCollection) {
         this.productCollection = productCollection;
-    }*/
-    @Override
-    public String toString() {
-        return "entity.Category[id=" + categoryId + "]";
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                '}';
+    }
 }

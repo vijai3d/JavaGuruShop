@@ -33,6 +33,9 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
 
+    @Column(name = "category_id", insertable = false, updatable = false)
+    private Short catid;
+
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category category;
@@ -102,6 +105,19 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public Collection<OrderedProduct> getOrderedProductCollection() {
+        return orderedProductCollection;
+    }
+
+    public void setOrderedProductCollection(Collection<OrderedProduct> orderedProductCollection) {
+        this.orderedProductCollection = orderedProductCollection;
+    }
+
+    public int getCatid() {
+        return catid;
+    }
+
 
     @Override
     public String toString() {

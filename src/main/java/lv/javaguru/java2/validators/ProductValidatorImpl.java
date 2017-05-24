@@ -1,12 +1,14 @@
-package lv.javaguru.java2.services.products;
+package lv.javaguru.java2.validators;
 
 import lv.javaguru.java2.domain.products.Category;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 /**
  * Created by Vijai3D on 26.03.2017.
  */
+@Component
 public class ProductValidatorImpl implements ProductValidator {
 
     @Override

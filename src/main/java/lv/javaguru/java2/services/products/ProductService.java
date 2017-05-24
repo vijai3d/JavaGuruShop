@@ -1,5 +1,6 @@
 package lv.javaguru.java2.services.products;
 
+import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.products.Product;
 
 import java.util.List;
@@ -11,10 +12,8 @@ public interface ProductService {
 
 //    TODO create more services
     void delete(int productId);
-
+    void update(Customer customer);
     List<Product> getAll();
-
-    List<Product> getAllByCategory(int categoryId);
-
+    List<Product> getAllByCategory(Short categoryId);
     Product findById(int productId);
 }

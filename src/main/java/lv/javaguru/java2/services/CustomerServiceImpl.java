@@ -3,6 +3,7 @@ package lv.javaguru.java2.services;
 import lv.javaguru.java2.database.hibernate.CustomerDAO;
 import lv.javaguru.java2.domain.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,35 +16,38 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
+    @Qualifier("HibernateCustomerDAOImpl")
     private CustomerDAO customerDAO;
 
+//TODO add validation
+
     @Override
     @Transactional
-    public void addCustomer(Customer customer) {
-        customerDAO.addCustomer(customer);
+    public void create(Customer customer) {
+        customerDAO.create(customer);
     }
 
     @Override
     @Transactional
-    public void updateCustomer(Customer customer) {
-        customerDAO.updateCustomer(customer);
+    public void update(Customer customer) {
+        customerDAO.update(customer);
     }
 
     @Override
     @Transactional
-    public List<Customer> listCustomers() {
-        return customerDAO.listCustomers();
+    public List<Customer> getAll() {
+        return customerDAO.getAll();
     }
 
     @Override
     @Transactional
-    public void removeCustomer(int id) {
-        customerDAO.removeCustomer(id);
+    public void delete(int id) {
+        customerDAO.delete(id);
     }
 
     @Override
     @Transactional
-    public Customer getCustomerById(int id) {
-        return customerDAO.getCustomerById(id);
+    public Customer getById(int id) {
+        return customerDAO.getById(id);
     }
 }

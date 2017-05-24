@@ -1,12 +1,13 @@
 package lv.javaguru.java2.services.products;
 
-import lv.javaguru.java2.database.product.CategoryDAO;
+
+import lv.javaguru.java2.database.hibernate.CategoryDAO;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Vijai3D on 06.05.2017.
@@ -14,10 +15,11 @@ import java.util.Optional;
 @Component
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
+    @Qualifier("HibernateCategoryDAOImpl")
     private CategoryDAO categoryDAO;
 
     @Override
-    public void delete(int categoryId) {
+    public void delete(Short categoryId) {
 
     }
 
@@ -30,8 +32,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category findById(Short categoryId) {
-        Category category = categoryDAO.findById(categoryId);
+    public Category getById(Short categoryId) {
+        Category category = categoryDAO.getById(categoryId);
         return category;
     }
 }

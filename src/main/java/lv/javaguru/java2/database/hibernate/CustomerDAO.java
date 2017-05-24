@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * Created by Vijai3D on 15.05.2017.
  */
-public interface CustomerDAO {
-    public void addCustomer(Customer customer);
-    public void updateCustomer(Customer customer);
-    public List<Customer> listCustomers();
-    public void removeCustomer(int id);
-    public Customer getCustomerById(int id);
+public interface CustomerDAO extends BaseDAO<Customer> {
+    public void create(Customer customer);
+    public void update(Customer customer);
+    public List<Customer> getAll();
+    public void delete(int id);
+    public Customer getById(int id);
 
 }

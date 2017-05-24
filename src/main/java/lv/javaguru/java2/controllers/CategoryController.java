@@ -34,16 +34,17 @@ public class CategoryController implements MVCController {
         session.setAttribute("categories", categoryService.getAll());
 
             String categoryId = request.getQueryString();
+        System.out.println(categoryId);
 
         if (categoryId != null) {
             // get selected category
-            Category selectedCategory = categoryService.findById(Short.valueOf(categoryId));
-            System.out.println(selectedCategory);
+            Category selectedCategory = categoryService.getById(Short.valueOf(categoryId));
+            //System.out.println(selectedCategory);
 
             session.setAttribute("selectedCategory", selectedCategory);
 
             // get all products for selected category
-            session.setAttribute("categoryProducts", productService.getAllByCategory(Integer.parseInt(categoryId)));
+            session.setAttribute("categoryProducts", productService.getAllByCategory(Short.valueOf(categoryId)));
         }
         return new MVCModel("/view/category.jsp");
     }

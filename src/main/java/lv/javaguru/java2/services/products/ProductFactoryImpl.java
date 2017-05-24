@@ -1,10 +1,13 @@
 package lv.javaguru.java2.services.products;
 
-import lv.javaguru.java2.database.jdbc.product.ProductDAOImpl;
-import lv.javaguru.java2.database.product.ProductDAO;
+
+import lv.javaguru.java2.database.hibernate.ProductDAO;
 import lv.javaguru.java2.domain.products.Category;
 import lv.javaguru.java2.domain.products.Product;
+import lv.javaguru.java2.validators.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -13,14 +16,16 @@ import static lv.javaguru.java2.domain.products.ProductBuilder.createProduct;
 /**
  * Created by Vijai3D on 23.03.2017.
  */
+@Component
 public class ProductFactoryImpl implements ProductFactory {
     @Autowired
+    @Qualifier("HibernateProductDAOImpl")
     private ProductDAO productDAO;
     @Autowired
     private ProductValidator productValidator;
 
     @Override
-    public Product create(String name, String description, BigDecimal price, Category category) {
+    public void create(String name, String description, BigDecimal price, Category category) {
 
         productValidator.validate(name, description, price, category);
 
@@ -30,6 +35,6 @@ public class ProductFactoryImpl implements ProductFactory {
                 .withPrice(price)
                 .withCategory(category).build();
 
-        return productDAO.save(product);
+       productDAO.create(product);
     }
 }

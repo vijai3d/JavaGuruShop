@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * Created by Vijai3D on 23.03.2017.
  */
-@Component
+
 public class ProductDAOImpl extends DAOImpl implements ProductDAO {
 
     public Product save(Product product) throws DBException{
