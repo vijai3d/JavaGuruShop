@@ -1,6 +1,7 @@
 package lv.javaguru.java2.domain.products;
 
 import lv.javaguru.java2.domain.orders.OrderedProduct;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.Date;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
+@Proxy(lazy = false)
 @Table(name = "product")
 public class Product {
 
