@@ -12,5 +12,5 @@ public interface ProductDAO extends BaseDAO<Product> {
      List<Product> getAll();
      void delete(int id);
      Product getById(int id);
-     List<Product> getAllByCategory(Short categoryId);
+     List<Product> getAllByCategory(byte categoryId);
 }

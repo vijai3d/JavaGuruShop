@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Vijai3D on 23.03.2017.
  */
 public final class CategoryBuilder {
-    private Short categoryId;
+    private byte categoryId;
     private String categoryName;
     private Collection<Product> products;
 
@@ -18,7 +18,7 @@ public final class CategoryBuilder {
         return new CategoryBuilder();
     }
 
-    public CategoryBuilder withCategoryId(Short categoryId) {
+    public CategoryBuilder withCategoryId(byte categoryId) {
         this.categoryId = categoryId;
         return this;
     }

@@ -7,6 +7,8 @@ import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.orders.OrderedProduct;
 import lv.javaguru.java2.domain.orders.OrderedProductPK;
+import lv.javaguru.java2.domain.products.Product;
+import lv.javaguru.java2.services.products.ProductService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Vijai3D on 18.05.2017.
@@ -25,6 +26,15 @@ public class OrderManager {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private CustomerOrderService customerOrderService;
+
+    @Autowired
+    private OrderedProductService orderedProductService;
 
     @Transactional
     public int placeOrder(String name, String email, String phone, String address, String city, String country, ShoppingCart cart) {
@@ -89,6 +99,37 @@ public class OrderManager {
 
             session.persist(orderedItem);
         }
+    }
+
+    public Map getOrderDetails(int orderId) {
+
+        Map orderMap = new HashMap();
+
+        // get order
+        CustomerOrder order = customerOrderService.find(orderId);
+
+        // get customer
+        Customer customer = order.getCustomer();
+
+        // get all ordered products
+        List<OrderedProduct> orderedProducts = orderedProductService.findByOrderId(orderId);
+
+        // get product details for ordered items
+        List<Product> products = new ArrayList<Product>();
+
+        for (OrderedProduct op : orderedProducts) {
+
+            Product p = (Product) productService.findById(op.getOrderedProductPK().getProductId());
+            products.add(p);
+        }
+
+        // add each item to orderMap
+        orderMap.put("orderRecord", order);
+        orderMap.put("customer", customer);
+        orderMap.put("orderedProducts", orderedProducts);
+        orderMap.put("products", products);
+
+        return orderMap;
     }
 
 }

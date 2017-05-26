@@ -12,13 +12,11 @@ import java.util.Date;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
-@Proxy(lazy = false)
 @Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "id")
     Integer productId;
 
@@ -36,7 +34,7 @@ public class Product {
     private Date lastUpdate;
 
     @Column(name = "category_id", insertable = false, updatable = false)
-    private Short catid;
+    private byte catid;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -116,7 +114,7 @@ public class Product {
         this.orderedProductCollection = orderedProductCollection;
     }
 
-    public int getCatid() {
+    public byte getCatid() {
         return catid;
     }
 

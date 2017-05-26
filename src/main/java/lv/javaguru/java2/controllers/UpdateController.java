@@ -46,6 +46,7 @@ public class UpdateController implements MVCController{
             Product product = productService.findById(Integer.parseInt(productId));
             cart.update(product, quantity);
         }
+
         return new MVCModel("/view/cart.jsp");
     }
 }

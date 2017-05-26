@@ -14,6 +14,6 @@ public interface ProductService {
     void delete(int productId);
     void update(Customer customer);
     List<Product> getAll();
-    List<Product> getAllByCategory(Short categoryId);
+    List<Product> getAllByCategory(byte categoryId);
     Product findById(int productId);
 }

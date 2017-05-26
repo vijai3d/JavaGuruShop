@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllByCategory(Short categoryId) {
+    public List<Product> getAllByCategory(byte categoryId) {
         List<Product> productListByCategory = productDAO.getAllByCategory(categoryId);
         return productListByCategory;
     }

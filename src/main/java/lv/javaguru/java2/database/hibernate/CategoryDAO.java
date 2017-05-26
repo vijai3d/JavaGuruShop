@@ -11,6 +11,6 @@ public interface CategoryDAO {
      void create(Category category);
      void update(Category category);
      List<Category> getAll();
-     void delete(Short id);
-     Category getById(Short id);
+     void delete(byte id);
+     Category getById(byte id);
 }

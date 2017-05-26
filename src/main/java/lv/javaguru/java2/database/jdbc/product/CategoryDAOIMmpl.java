@@ -30,7 +30,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
-                category.setCategoryId(rs.getShort(1));
+                category.setCategoryId(rs.getByte(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute CategoryDAOImpl.save()");
@@ -55,7 +55,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
             Category category = null;
             if (resultSet.next()) {
                 category = new Category();
-                category.setCategoryId(resultSet.getShort("id"));
+                category.setCategoryId(resultSet.getByte("id"));
                 category.setCategoryName(resultSet.getString("name"));
 
             }
@@ -91,7 +91,7 @@ public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Category category = new Category();
-                category.setCategoryId(resultSet.getShort("id"));
+                category.setCategoryId(resultSet.getByte("id"));
                 category.setCategoryName(resultSet.getString("name"));
                 categories.add(category);
             }

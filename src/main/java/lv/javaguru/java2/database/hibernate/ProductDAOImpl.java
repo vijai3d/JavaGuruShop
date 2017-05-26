@@ -46,13 +46,10 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
         return productsList;
     }
     @Override
-    public List<Product> getAllByCategory(Short categoryId) throws DBException {
+    public List<Product> getAllByCategory(byte categoryId) throws DBException {
         List<Product> products = (List<Product>) getCurrentSession().createQuery("from Product where catid = :id")
                 .setParameter("id", categoryId)
                 .list();
-        for (Product p : products) {
-            System.out.println(p.getName());
-        }
         return products;
     }
 }

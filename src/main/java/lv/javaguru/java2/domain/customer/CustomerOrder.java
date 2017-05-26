@@ -1,6 +1,7 @@
 package lv.javaguru.java2.domain.customer;
 
 import lv.javaguru.java2.domain.orders.OrderedProduct;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,7 +13,9 @@ import java.util.Date;
  * Created by Vijai3D on 18.05.2017.
  */
 @Entity
+@Proxy(lazy = false)
 @Table(name = "customer_order")
+@NamedQuery(name = "CustomerOrder.findByCustomer", query = "SELECT c FROM CustomerOrder c WHERE c.customer = :customer")
 public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

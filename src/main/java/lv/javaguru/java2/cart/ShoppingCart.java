@@ -1,10 +1,9 @@
 package lv.javaguru.java2.cart;
 
-
 import lv.javaguru.java2.domain.products.Product;
 
-import java.util.*;
 
+import java.util.*;
 
 public class ShoppingCart {
 
@@ -52,8 +51,11 @@ public class ShoppingCart {
 
             for (ShoppingCartItem scItem : items) {
 
-                if (scItem.getProduct().getProductId() == product.getProductId()) {
+                System.out.println("scItem: " + scItem.getProduct().getProductId() +" productid: " + product.getProductId());
 
+                if (scItem.getProduct().getProductId() == product.getProductId()) {
+                    //TODO product.getProductId() ne ravni!?
+                    System.out.println("qty: " + qty);
                     if (qty != 0) {
                         // set item quantity to new value
                         scItem.setQuantity(qty);
@@ -166,5 +168,4 @@ public class ShoppingCart {
         numberOfItems = 0;
         total = 0;
     }
-
 }

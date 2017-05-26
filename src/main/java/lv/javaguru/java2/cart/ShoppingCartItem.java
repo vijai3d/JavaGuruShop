@@ -11,10 +11,9 @@ package lv.javaguru.java2.cart;
 
 import lv.javaguru.java2.domain.products.Product;
 
-/**
- *
- * @author tgiunipero
- */
+
+
+
 public class ShoppingCartItem {
 
     Product product;

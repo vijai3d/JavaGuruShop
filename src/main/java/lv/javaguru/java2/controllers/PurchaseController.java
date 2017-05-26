@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 /**
@@ -43,7 +44,7 @@ public class PurchaseController implements MVCController {
             String city = request.getParameter("city");
             String country = request.getParameter("country");
 
-            int orderId = orderManager.placeOrder(name, email, phone, address, city, country, cart);
+
 
             // validate user data
             boolean validationErrorFlag = false;
@@ -56,6 +57,34 @@ public class PurchaseController implements MVCController {
                 return new MVCModel("/view/checkout.jsp");
 
                 // TODO otherwise, save order to database
+            } else {
+                int orderId = orderManager.placeOrder(name, email, phone, address, city, country, cart);
+
+                if (orderId != 0) {
+
+
+                    // dissociate shopping cart from session
+                    cart = null;
+
+                    // end session
+                    session.invalidate();
+
+                    // get order details
+                    Map orderMap = orderManager.getOrderDetails(orderId);
+
+                    // place order details in request scope
+                    request.setAttribute("customer", orderMap.get("customer"));
+                    request.setAttribute("products", orderMap.get("products"));
+                    request.setAttribute("orderRecord", orderMap.get("orderRecord"));
+                    request.setAttribute("orderedProducts", orderMap.get("orderedProducts"));
+
+                    return new MVCModel("/view/confirmation.jsp");
+
+                    // otherwise, send back to checkout page and display error
+                } else {
+                    return new MVCModel("/view/checkout.jsp");
+
+                }
             }
         }
         request.setAttribute("orderFailureFlag", true);

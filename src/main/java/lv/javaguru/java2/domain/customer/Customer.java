@@ -1,5 +1,7 @@
 package lv.javaguru.java2.domain.customer;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
 /**

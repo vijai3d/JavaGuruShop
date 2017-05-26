@@ -1,7 +1,5 @@
 package lv.javaguru.java2.domain.products;
 
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -9,13 +7,12 @@ import java.util.Collection;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
-@Proxy(lazy = false)
 @Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private Short categoryId;
+    private byte categoryId;
 
     @Column(name = "name")
     private String categoryName;
@@ -27,11 +24,11 @@ public class Category {
 
     }
 
-    public Category(Short categoryId) {
+    public Category(byte categoryId) {
         this.categoryId = categoryId;
     }
 
-    public Category(Short categoryId, String categoryName) {
+    public Category(byte categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
@@ -40,7 +37,7 @@ public class Category {
         return categoryId;
     }
 
-    public void setCategoryId(Short categoryId) {
+    public void setCategoryId(byte categoryId) {
         this.categoryId = categoryId;
     }
 

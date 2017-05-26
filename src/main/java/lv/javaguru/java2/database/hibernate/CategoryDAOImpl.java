@@ -33,18 +33,18 @@ public class CategoryDAOImpl  implements CategoryDAO{
     }
 
     @Override
-    public void delete(Short id)  throws DBException {
+    public void delete(byte id)  throws DBException {
         Session session = sessionFactory.getCurrentSession();
-        Category category = session.load(Category.class, new Short(id));
+        Category category = session.load(Category.class, new Byte(id));
         if(null !=  category){
             session.delete(category);
         }
     }
 
     @Override
-    public Category getById(Short id)  throws DBException{
+    public Category getById(byte id)  throws DBException{
         Session session = sessionFactory.getCurrentSession();
-        Category category = session.load(Category.class, new Short(id));
+        Category category = session.load(Category.class, new Byte(id));
         return category;
     }
 
