@@ -3,6 +3,7 @@ package lv.javaguru.java2.validators;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 /**

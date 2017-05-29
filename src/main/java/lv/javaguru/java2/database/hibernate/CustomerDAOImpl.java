@@ -1,22 +1,17 @@
 package lv.javaguru.java2.database.hibernate;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.hibernate.CustomerDAO;
-
 import lv.javaguru.java2.domain.customer.Customer;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Vijai3D on 15.05.2017.
  */
 @Component("HibernateCustomerDAOImpl")
-@Transactional
+//@Transactional
 public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
 
     @Override
@@ -26,13 +21,13 @@ public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
 
     @Override
     public Customer getById(int id) throws DBException {
-        Customer customer = getCurrentSession().load(Customer.class, new Integer(id));
+        Customer customer = (Customer) getCurrentSession().load(Customer.class, new Integer(id));
         return customer;
     }
 
     @Override
     public void delete(int id) throws DBException {
-        Customer customer = getCurrentSession().load(Customer.class, new Integer(id));
+        Customer customer = (Customer) getCurrentSession().load(Customer.class, new Integer(id));
         if(null != customer){
             getCurrentSession().delete(customer);
         }

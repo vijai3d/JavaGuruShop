@@ -11,6 +11,7 @@ package lv.javaguru.java2.validators;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 /**
  *

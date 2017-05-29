@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 /**
  * Created by Vijai3D on 07.05.2017.
@@ -21,12 +22,10 @@ public class HomeController implements MVCController {
     public MVCModel processGet(HttpServletRequest request) {
         request.setAttribute("categories", categoryService.getAll());
         return new MVCModel("/index.jsp");
-
     }
 
     @Override
     public MVCModel processPost(HttpServletRequest request) {
-
         return null;
     }
 }

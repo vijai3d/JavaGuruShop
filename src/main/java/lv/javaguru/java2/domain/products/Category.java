@@ -1,5 +1,9 @@
 package lv.javaguru.java2.domain.products;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -7,6 +11,7 @@ import java.util.Collection;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
+//@Proxy(lazy = false)
 @Table(name = "category")
 public class Category {
     @Id
@@ -17,6 +22,7 @@ public class Category {
     @Column(name = "name")
     private String categoryName;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Collection<Product> productCollection;
 

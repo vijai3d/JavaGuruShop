@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 
 import static lv.javaguru.java2.domain.products.ProductBuilder.createProduct;
@@ -17,6 +18,7 @@ import static lv.javaguru.java2.domain.products.ProductBuilder.createProduct;
  * Created by Vijai3D on 23.03.2017.
  */
 @Component
+//@Transactional
 public class ProductFactoryImpl implements ProductFactory {
     @Autowired
     @Qualifier("HibernateProductDAOImpl")

@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Vijai3D on 06.05.2017.
  */
 @Component
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
+
     @Autowired
     @Qualifier("HibernateCategoryDAOImpl")
     private CategoryDAO categoryDAO;

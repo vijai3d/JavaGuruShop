@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.0.12.Final</version>
+            <version>5.2.8.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -56,6 +56,16 @@
         </dependency><dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>4.3.7.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
         <dependency>
@@ -109,7 +119,11 @@
             <artifactId>spring-orm</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
-
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
 
     </dependencies>
 

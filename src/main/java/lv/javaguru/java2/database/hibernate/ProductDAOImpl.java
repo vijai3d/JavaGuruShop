@@ -4,15 +4,16 @@ import lv.javaguru.java2.database.DBException;
 
 import lv.javaguru.java2.domain.products.Product;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Vijai3D on 24.05.2017.
  */
 @Component("HibernateProductDAOImpl")
-@Transactional
+//@Transactional
 public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
 
     @Override
@@ -28,7 +29,7 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
 
     @Override
     public void delete(int id) throws DBException {
-        Product product = getCurrentSession().load(Product.class, new Integer(id));
+        Product product = (Product) getCurrentSession().load(Product.class, new Integer(id));
         if(null != product){
             getCurrentSession().delete(product);
         }
@@ -36,7 +37,7 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
 
     @Override
     public Product getById(int id) throws DBException {
-        Product product = getCurrentSession().load(Product.class, new Integer(id));
+        Product product = (Product) getCurrentSession().load(Product.class, new Integer(id));
         return product;
     }
 

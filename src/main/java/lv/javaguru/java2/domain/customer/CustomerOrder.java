@@ -13,9 +13,9 @@ import java.util.Date;
  * Created by Vijai3D on 18.05.2017.
  */
 @Entity
-@Proxy(lazy = false)
+//@Proxy(lazy = false)
 @Table(name = "customer_order")
-@NamedQuery(name = "CustomerOrder.findByCustomer", query = "SELECT c FROM CustomerOrder c WHERE c.customer = :customer")
+//@NamedQuery(name = "CustomerOrder.findByCustomer", query = "SELECT c FROM CustomerOrder c WHERE c.customer = :customer")
 public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -6,17 +6,22 @@ import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductService;
 import lv.javaguru.java2.filter.mvc.MVCController;
 import lv.javaguru.java2.filter.mvc.MVCModel;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 /**
  * Created by Vijai3D on 07.05.2017.
  */
-@Component
+@Controller
 public class CategoryController implements MVCController {
+
 
     @Autowired
     private CategoryService categoryService;
@@ -34,12 +39,13 @@ public class CategoryController implements MVCController {
         session.setAttribute("categories", categoryService.getAll());
 
             String categoryId = request.getQueryString();
-        System.out.println(categoryId);
+
+
 
         if (categoryId != null) {
             // get selected category
             Category selectedCategory = categoryService.getById(Byte.valueOf(categoryId));
-            //System.out.println(selectedCategory);
+
 
             session.setAttribute("selectedCategory", selectedCategory);
 

@@ -1,6 +1,8 @@
 package lv.javaguru.java2.domain.products;
 
 import lv.javaguru.java2.domain.orders.OrderedProduct;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.util.Date;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
+//@Proxy(lazy = false)
 @Table(name = "product")
 public class Product {
 
@@ -37,9 +40,10 @@ public class Product {
     private byte catid;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Category category;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Collection<OrderedProduct> orderedProductCollection;
 

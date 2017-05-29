@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by Victor on 24.03.2017.
  */
 @Component
+@Transactional
 public class ProductServiceImpl implements ProductService {
 
     @Autowired

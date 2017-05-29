@@ -6,12 +6,15 @@ import lv.javaguru.java2.domain.products.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+
 import static lv.javaguru.java2.domain.products.CategoryBuilder.createCategory;
 
 /**
  * Created by Victor on 24.03.2017.
  */
 @Component
+//@Transactional
 public class CategoryFactoryImpl  implements CategoryFactory{
     @Autowired
     private CategoryDAO categoryDAO;

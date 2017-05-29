@@ -1,6 +1,7 @@
 package lv.javaguru.java2.cart;
 
 import lv.javaguru.java2.domain.products.Product;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.*;

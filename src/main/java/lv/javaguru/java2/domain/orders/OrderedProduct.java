@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ordered_product")
-@NamedQuery(name = "OrderedProduct.findByCustomerOrderId", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId")
+//@NamedQuery(name = "OrderedProduct.findByCustomerOrderId", query = "SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId")
 public class OrderedProduct {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class OrderedProduct {
     @ManyToOne(optional = false)
     private Product product;
     @JoinColumn(name = "customer_order_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private CustomerOrder customerOrder;
 
     public OrderedProduct() {
