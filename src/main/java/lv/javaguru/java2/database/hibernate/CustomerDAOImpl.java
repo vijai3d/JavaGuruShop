@@ -11,7 +11,6 @@ import java.util.List;
  * Created by Vijai3D on 15.05.2017.
  */
 @Component("HibernateCustomerDAOImpl")
-//@Transactional
 public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
 
     @Override
@@ -21,13 +20,13 @@ public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
 
     @Override
     public Customer getById(int id) throws DBException {
-        Customer customer = (Customer) getCurrentSession().load(Customer.class, new Integer(id));
+        Customer customer = (Customer) getCurrentSession().get(Customer.class, new Integer(id));
         return customer;
     }
 
     @Override
     public void delete(int id) throws DBException {
-        Customer customer = (Customer) getCurrentSession().load(Customer.class, new Integer(id));
+        Customer customer = (Customer) getCurrentSession().get(Customer.class, new Integer(id));
         if(null != customer){
             getCurrentSession().delete(customer);
         }

@@ -43,7 +43,7 @@ public class CategoryController implements MVCController {
 
 
         if (categoryId != null) {
-            // get selected category
+            // get selected by user category
             Category selectedCategory = categoryService.getById(Byte.valueOf(categoryId));
 
 

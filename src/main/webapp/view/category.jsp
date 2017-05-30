@@ -23,6 +23,7 @@
     SELECT * FROM product WHERE category_id=?
     <sql:param value="${pageContext.request.queryString}"/>
 </sql:query>--%>
+
 <c:if test="${pageContext.request.getParameter('submit') != null}">
     <script>
         window.setTimeout(function() {

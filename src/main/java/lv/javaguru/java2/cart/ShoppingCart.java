@@ -1,9 +1,6 @@
 package lv.javaguru.java2.cart;
 
 import lv.javaguru.java2.domain.products.Product;
-import org.springframework.transaction.annotation.Transactional;
-
-
 import java.util.*;
 
 public class ShoppingCart {
@@ -25,8 +22,7 @@ public class ShoppingCart {
 
         for (ShoppingCartItem scItem : items) {
 
-            if (scItem.getProduct().getProductId() == product.getProductId()) {
-
+            if (scItem.getProduct().getProductId().equals(product.getProductId())) {
                 newItem = false;
                 scItem.incrementQuantity();
             }
@@ -52,11 +48,8 @@ public class ShoppingCart {
 
             for (ShoppingCartItem scItem : items) {
 
-                System.out.println("scItem: " + scItem.getProduct().getProductId() +" productid: " + product.getProductId());
+                if (scItem.getProduct().getProductId().equals(product.getProductId())) {
 
-                if (scItem.getProduct().getProductId() == product.getProductId()) {
-                    //TODO product.getProductId() ne ravni!?
-                    System.out.println("qty: " + qty);
                     if (qty != 0) {
                         // set item quantity to new value
                         scItem.setQuantity(qty);
@@ -75,24 +68,11 @@ public class ShoppingCart {
         }
     }
 
-    /**
-     * Returns the list of <code>ShoppingCartItems</code>.
-     *
-     * @return the <code>items</code> list
-     * @see ShoppingCartItem
-     */
     public synchronized List<ShoppingCartItem> getItems() {
 
         return items;
     }
 
-    /**
-     * Returns the sum of quantities for all items maintained in shopping cart
-     * <code>items</code> list.
-     *
-     * @return the number of items in shopping cart
-     * @see ShoppingCartItem
-     */
     public synchronized int getNumberOfItems() {
 
         numberOfItems = 0;
@@ -105,13 +85,6 @@ public class ShoppingCart {
         return numberOfItems;
     }
 
-    /**
-     * Returns the sum of the product price multiplied by the quantity for all
-     * items in shopping cart list. This is the total cost excluding the surcharge.
-     *
-     * @return the cost of all items times their quantities
-     * @see ShoppingCartItem
-     */
     public synchronized double getSubtotal() {
 
         double amount = 0;
@@ -125,14 +98,6 @@ public class ShoppingCart {
         return amount;
     }
 
-    /**
-     * Calculates the total cost of the order. This method adds the subtotal to
-     * the designated surcharge and sets the <code>total</code> instance variable
-     * with the result.
-     *
-     * @param surcharge the designated surcharge for all orders
-     * @see ShoppingCartItem
-     */
     public synchronized void calculateTotal(String surcharge) {
 
         double amount = 0;
@@ -146,24 +111,11 @@ public class ShoppingCart {
         total = amount;
     }
 
-    /**
-     * Returns the total cost of the order for the given
-     * <code>ShoppingCart</code> instance.
-     *
-     * @return the cost of all items times their quantities plus surcharge
-     */
     public synchronized double getTotal() {
 
         return total;
     }
 
-    /**
-     * Empties the shopping cart. All items are removed from the shopping cart
-     * <code>items</code> list, <code>numberOfItems</code> and
-     * <code>total</code> are reset to '<code>0</code>'.
-     *
-     * @see ShoppingCartItem
-     */
     public synchronized void clear() {
         items.clear();
         numberOfItems = 0;

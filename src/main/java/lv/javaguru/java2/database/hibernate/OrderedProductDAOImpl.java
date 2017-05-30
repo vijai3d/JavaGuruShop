@@ -11,10 +11,12 @@ import java.util.List;
  * Created by Vijai3D on 25.05.2017.
  */
 @Component
-//@Transactional
+@Transactional
 public class OrderedProductDAOImpl extends DAOImpl<OrderedProduct> implements OrderedProductDAO {
     @Override
     public List<OrderedProduct> findByOrderId(Object id) {
-        return getCurrentSession().createQuery("SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId").list();
+        return getCurrentSession().createQuery("SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId")
+                .setParameter("customerOrderId", id)
+                .list();
     }
 }

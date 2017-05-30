@@ -1,12 +1,9 @@
 package lv.javaguru.java2.services.products;
 
-import lv.javaguru.java2.database.jdbc.product.CategoryDAOIMmpl;
-import lv.javaguru.java2.database.product.CategoryDAO;
+import lv.javaguru.java2.database.jdbc.product.CategoryDAO;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
 
 import static lv.javaguru.java2.domain.products.CategoryBuilder.createCategory;
 

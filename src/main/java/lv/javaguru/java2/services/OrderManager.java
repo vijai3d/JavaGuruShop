@@ -22,6 +22,7 @@ import java.util.*;
  * Created by Vijai3D on 18.05.2017.
  */
 @Component
+@Transactional
 public class OrderManager {
 
     @Autowired
@@ -36,7 +37,7 @@ public class OrderManager {
     @Autowired
     private OrderedProductService orderedProductService;
 
-    @Transactional
+
     public int placeOrder(String name, String email, String phone, String address, String city, String country, ShoppingCart cart) {
 
             Customer customer = addCustomer(name, email, phone, address, city, country);

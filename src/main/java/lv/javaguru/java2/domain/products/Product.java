@@ -14,12 +14,11 @@ import java.util.Date;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
-//@Proxy(lazy = false)
 @Table(name = "product")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     Integer productId;
 

@@ -1,9 +1,6 @@
 package lv.javaguru.java2.configs;
 
-import lv.javaguru.java2.database.jdbc.product.ProductDAOImpl;
-import lv.javaguru.java2.database.product.CategoryDAO;
-import lv.javaguru.java2.services.products.ProductService;
-import lv.javaguru.java2.services.products.ProductServiceImpl;
+import lv.javaguru.java2.database.jdbc.product.CategoryDAO;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

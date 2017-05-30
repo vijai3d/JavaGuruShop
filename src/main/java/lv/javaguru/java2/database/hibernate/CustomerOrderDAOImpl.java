@@ -11,13 +11,12 @@ import javax.transaction.Transactional;
  * Created by Vijai3D on 25.05.2017.
  */
 @Component
-//@Transactional
 public class CustomerOrderDAOImpl extends DAOImpl<CustomerOrder> implements CustomerOrderDAO{
 
 
     @Override
     public CustomerOrder find(int id)  throws DBException {
-        CustomerOrder customerOrder = (CustomerOrder) getCurrentSession().load(CustomerOrder.class, new Integer(id));
+        CustomerOrder customerOrder = (CustomerOrder) getCurrentSession().get(CustomerOrder.class, new Integer(id));
         return customerOrder;
     }
 

@@ -2,14 +2,12 @@ package lv.javaguru.java2.database.jdbc.product;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
-import lv.javaguru.java2.database.product.CategoryDAO;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Victor on 24.03.2017.

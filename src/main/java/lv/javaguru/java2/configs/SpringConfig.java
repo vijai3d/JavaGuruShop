@@ -51,6 +51,7 @@ public class SpringConfig {
         properties.put("hibernate.show_sql", showSql);
         properties.put("hibernate.format_sql", formatSql);
         properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
+        //properties.put("hibernate.enable_lazy_load_no_trans", true);
 
         return properties;
     }

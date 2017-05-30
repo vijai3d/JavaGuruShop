@@ -11,7 +11,6 @@ import java.util.Collection;
  * Created by Vijai3D on 23.03.2017.
  */
 @Entity
-//@Proxy(lazy = false)
 @Table(name = "category")
 public class Category {
     @Id

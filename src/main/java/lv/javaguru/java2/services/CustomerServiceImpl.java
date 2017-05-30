@@ -24,31 +24,26 @@ public class CustomerServiceImpl implements CustomerService {
 //TODO add validation
 
     @Override
-    @Transactional
     public void create(Customer customer) {
         customerDAO.create(customer);
     }
 
     @Override
-    @Transactional
     public void update(Customer customer) {
         customerDAO.update(customer);
     }
 
     @Override
-    @Transactional
     public List<Customer> getAll() {
         return customerDAO.getAll();
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         customerDAO.delete(id);
     }
 
     @Override
-    @Transactional
     public Customer getById(int id) {
         return customerDAO.getById(id);
     }

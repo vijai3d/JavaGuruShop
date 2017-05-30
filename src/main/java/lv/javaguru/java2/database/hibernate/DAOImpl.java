@@ -4,14 +4,12 @@ import lv.javaguru.java2.database.DBException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import javax.transaction.Transactional;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
  * Created by Vijai3D on 24.05.2017.
  */
-//@Transactional
 abstract class DAOImpl<T> implements BaseDAO<T> {
 
     private Class<T> persistentClass;

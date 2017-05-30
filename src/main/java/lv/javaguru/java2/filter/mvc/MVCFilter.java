@@ -2,6 +2,7 @@ package lv.javaguru.java2.filter.mvc;
 
 import lv.javaguru.java2.configs.SpringConfig;
 import lv.javaguru.java2.controllers.*;
+import lv.javaguru.java2.servlet.TestServlet;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -58,6 +59,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/checkout", getBean(CheckoutController.class));
         controllerMapping.put("/updateCart", getBean(UpdateController.class));
         controllerMapping.put("/purchase", getBean(PurchaseController.class));
+        controllerMapping.put("/test", getBean(TestServlet.class));
     }
 
     @Override
@@ -67,6 +69,7 @@ public class MVCFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)request;
         HttpServletResponse resp = (HttpServletResponse)response;
         String contextURI = req.getServletPath();
+
         HttpSession session = req.getSession(false);
 
         // if session doesn't exist, forward user to index page

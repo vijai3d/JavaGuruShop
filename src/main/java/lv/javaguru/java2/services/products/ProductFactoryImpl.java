@@ -18,7 +18,7 @@ import static lv.javaguru.java2.domain.products.ProductBuilder.createProduct;
  * Created by Vijai3D on 23.03.2017.
  */
 @Component
-//@Transactional
+@Transactional
 public class ProductFactoryImpl implements ProductFactory {
     @Autowired
     @Qualifier("HibernateProductDAOImpl")

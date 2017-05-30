@@ -1,4 +1,4 @@
-package lv.javaguru.java2.database.product;
+package lv.javaguru.java2.database.jdbc.product;
 
 import lv.javaguru.java2.domain.products.Category;
 
