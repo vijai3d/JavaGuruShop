@@ -1,19 +1,35 @@
-package lv.javaguru.java2.database.jdbc.product;
+package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Victor on 24.03.2017.
  */
+
+public interface CategoryDAO {
+    Category save(Category category);
+
+    Category findById(Short id);
+
+    void delete(Short id);
+
+    void update(Category category);
+
+    List<Category> getAll();
+
+
+}
+
 @Component
-public class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
+class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
 
     @Override
     public Category save(Category category) throws DBException {

@@ -7,6 +7,9 @@ import lv.javaguru.java2.filter.mvc.MVCController;
 import lv.javaguru.java2.filter.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,26 +19,21 @@ import java.util.Map;
 /**
  * Created by Vijai3D on 14.05.2017.
  */
-@Component
-public class PurchaseController implements MVCController {
+@Controller
+@RequestMapping("purchase")
+public class PurchaseController {
     @Autowired
     private OrderManager orderManager;
 
     @Autowired
     private Validator validator;
 
-    @Override
-    public MVCModel processGet(HttpServletRequest request) {
-        return null;
-    }
-
-    @Override
-    public MVCModel processPost(HttpServletRequest request) {
+    @PostMapping
+    public String purchase(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
         if (cart != null) {
-
             // extract user data from request
             String name = request.getParameter("name");
             String email = request.getParameter("email");
@@ -43,8 +41,6 @@ public class PurchaseController implements MVCController {
             String address = request.getParameter("address");
             String city = request.getParameter("city");
             String country = request.getParameter("country");
-
-
 
             // validate user data
             boolean validationErrorFlag = false;
@@ -54,7 +50,7 @@ public class PurchaseController implements MVCController {
             if (validationErrorFlag == true) {
                 request.setAttribute("validationErrorFlag", validationErrorFlag);
 
-                return new MVCModel("/view/checkout.jsp");
+                return "checkout";
 
                 // TODO otherwise, save order to database
             } else {
@@ -78,16 +74,16 @@ public class PurchaseController implements MVCController {
                     request.setAttribute("orderRecord", orderMap.get("orderRecord"));
                     request.setAttribute("orderedProducts", orderMap.get("orderedProducts"));
 
-                    return new MVCModel("/view/confirmation.jsp");
+                    return "confirmation";
 
                     // otherwise, send back to checkout page and display error
                 } else {
-                    return new MVCModel("/view/checkout.jsp");
+                    return"checkout";
 
                 }
             }
         }
         request.setAttribute("orderFailureFlag", true);
-        return new MVCModel("/view/confirmation.jsp");
+        return "confirmation";
     }
 }

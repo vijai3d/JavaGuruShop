@@ -10,6 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,11 +21,10 @@ import javax.transaction.Transactional;
 /**
  * Created by Vijai3D on 13.05.2017.
  */
-@Component
-public class UpdateController implements MVCController{
+@Controller
+@RequestMapping("/updateCart")
+public class UpdateController {
 
-    /*@Autowired
-    SessionFactory sessionFactory;*/
 
     @Autowired
     private Validator validator;
@@ -30,37 +32,23 @@ public class UpdateController implements MVCController{
     @Autowired
     private ProductService productService;
 
-    @Override
-    public MVCModel processGet(HttpServletRequest request) {
+   @PostMapping
+   public String update(HttpServletRequest request) {
 
-        return null;
-    }
+       HttpSession session = request.getSession();
+       ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
-    @Override
-    public MVCModel processPost(HttpServletRequest request) {
+       // get input from request
+       String productId = request.getParameter("productId");
+       String quantity = request.getParameter("quantity");
 
-        HttpSession session = request.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+       boolean invalidEntry = validator.validateQuantity(productId, quantity);
 
-       /* if (sessionFactory.isOpen()) {
-            Session hibses = sessionFactory.getCurrentSession();
-            hibses.flush();
-            System.out.println("Session open");
-        }*/
-
-        // get input from request
-        String productId = request.getParameter("productId");
-        String quantity = request.getParameter("quantity");
-
-        boolean invalidEntry = validator.validateQuantity(productId, quantity);
-
-        if (!invalidEntry) {
-
-            Product product = productService.findById(Integer.parseInt(productId));
-            cart.update(product, quantity);
-            session.getAttribute("cart");
-        }
-
-        return new MVCModel("/view/cart.jsp");
-    }
+       if (!invalidEntry) {
+           Product product = productService.findById(Integer.parseInt(productId));
+           cart.update(product, quantity);
+           session.getAttribute("cart");
+       }
+       return "cart";
+   }
 }

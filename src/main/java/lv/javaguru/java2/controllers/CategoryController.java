@@ -11,6 +11,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +23,8 @@ import javax.transaction.Transactional;
  * Created by Vijai3D on 07.05.2017.
  */
 @Controller
-public class CategoryController implements MVCController {
+@RequestMapping("/category")
+public class CategoryController {
 
 
     @Autowired
@@ -29,34 +33,19 @@ public class CategoryController implements MVCController {
     @Autowired
     private ProductService productService;
 
-
-    @Override
-    public MVCModel processGet(HttpServletRequest request) {
-
+    @GetMapping
+    public String showCategoryViews(HttpServletRequest request) {
         HttpSession session = request.getSession();
-
-            // get All categories
         session.setAttribute("categories", categoryService.getAll());
 
-            String categoryId = request.getQueryString();
-
-
-
+        String categoryId = request.getQueryString();
         if (categoryId != null) {
             // get selected by user category
             Category selectedCategory = categoryService.getById(Byte.valueOf(categoryId));
-
-
             session.setAttribute("selectedCategory", selectedCategory);
-
             // get all products for selected category
             session.setAttribute("categoryProducts", productService.getAllByCategory(Byte.valueOf(categoryId)));
         }
-        return new MVCModel("/view/category.jsp");
-    }
-
-    @Override
-    public MVCModel processPost(HttpServletRequest request) {
-        return null;
+        return "category";
     }
 }

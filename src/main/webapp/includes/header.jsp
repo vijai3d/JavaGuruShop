@@ -29,15 +29,13 @@
     </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         <form class="form-inline my-2 my-lg-0">
             <div class="input-group">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
             </div>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-        <ul class="navbar-nav navbar-toggler-">
+       <%-- <ul class="navbar-nav navbar-toggler-">
             <li class="nav-item">
                 <a class="nav-link" href="#">ENG</a>
             </li>
@@ -47,7 +45,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">LV</a>
             </li>
-        </ul>
+        </ul>--%>
 
         <ul class="navbar-nav navbar-toggler-right">
             <c:if test="${!empty cart}">
@@ -61,7 +59,10 @@
                 </i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+                <a class="nav-link" href="/admin/login.jsp"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> MY ACCOUNT</a>

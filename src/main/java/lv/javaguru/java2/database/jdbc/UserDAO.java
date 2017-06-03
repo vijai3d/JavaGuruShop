@@ -1,7 +1,6 @@
 package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+public interface UserDAO {
+
+    User save(User user);
+
+    Optional<User> getById(Long id);
+
+    void delete(Long id);
+
+    void update(User user);
+
+    List<User> getAll();
+
+}
+
 @Component
-public class UserDAOImpl extends DAOImpl implements UserDAO {
+class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public User save(User user) throws DBException {
         Connection connection = null;

@@ -59,7 +59,7 @@ public class MVCFilter implements Filter {
         controllerMapping.put("/checkout", getBean(CheckoutController.class));
         controllerMapping.put("/updateCart", getBean(UpdateController.class));
         controllerMapping.put("/purchase", getBean(PurchaseController.class));
-        controllerMapping.put("/test", getBean(TestServlet.class));
+        controllerMapping.put("/admin", getBean(AdminController.class));
     }
 
     @Override

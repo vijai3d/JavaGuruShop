@@ -5,6 +5,9 @@ import lv.javaguru.java2.configs.SpringConfig;
 import lv.javaguru.java2.filter.mvc.MVCController;
 import lv.javaguru.java2.filter.mvc.MVCModel;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,12 +18,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by Vijai3D on 11.05.2017.
  */
-@Component
-public class CheckoutController  implements MVCController{
+@Controller
+@RequestMapping("/checkout")
+public class CheckoutController {
+
     final String surcharge = "15";
 
-    @Override
-    public MVCModel processGet(HttpServletRequest request) {
+    @GetMapping
+    public String checkout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         boolean validationErrorFlag = false;
@@ -28,13 +33,6 @@ public class CheckoutController  implements MVCController{
         request.setAttribute("validationErrorFlag", validationErrorFlag);
         // calculate total + surcharge
         cart.calculateTotal(surcharge);
-
-
-        return new MVCModel("/view/checkout.jsp");
-    }
-
-    @Override
-    public MVCModel processPost(HttpServletRequest request) {
-        return null;
+        return "checkout";
     }
 }

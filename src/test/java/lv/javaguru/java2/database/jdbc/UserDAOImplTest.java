@@ -1,6 +1,5 @@
 package lv.javaguru.java2.database.jdbc;
 
-import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.junit.Test;
 

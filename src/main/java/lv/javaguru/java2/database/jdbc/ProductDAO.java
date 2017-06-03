@@ -1,7 +1,6 @@
-package lv.javaguru.java2.database.jdbc.product;
+package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAOImpl;
 import lv.javaguru.java2.domain.products.Product;
 import org.springframework.stereotype.Component;
 
@@ -10,14 +9,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Vijai3D on 23.03.2017.
  */
-@Component("JDBCProductDAO")
-public class ProductDAOImpl extends DAOImpl implements ProductDAO {
+public interface ProductDAO {
 
-    public Product save(Product product) throws DBException{
+    Product save(Product product);
+
+    Product findById(int id);
+
+    void delete(int id);
+
+    void update(Product product);
+
+    List<Product> getAll();
+
+    List<Product> getAllByCategory(int categoryId);
+}
+
+@Component("JDBCProductDAO")
+class ProductDAOImpl extends DAOImpl implements ProductDAO {
+
+    public Product save(Product product) throws DBException {
         Connection connection = null;
 
         try {
