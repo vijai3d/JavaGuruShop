@@ -59,7 +59,7 @@
                 </i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/login.jsp"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+                <a class="nav-link" href="/admin/login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
