@@ -10,16 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
-@RequestMapping("/admin")
+
 public class AdminController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping
+    @GetMapping("/admin")
     public String admin(Model model) {
         model.addAttribute("customerList", customerService.getAll());
     return "/admin/index";
@@ -28,6 +27,6 @@ public class AdminController {
     @GetMapping("/login")
     public String login(Model model) {
 
-        return "/admin/login";
+        return "/login";
     }
 }

@@ -24,8 +24,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext dispatcherServlet = new AnnotationConfigWebApplicationContext();
         dispatcherServlet.register(MVCConfig.class);
 
+        //DelegatingFilterProxy filter = new DelegatingFilterProxy("springSecurityFilterChain");
+
         // Register and map the dispatcher servlet
         ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(dispatcherServlet));
+
+        //container.addFilter("springSecurityFilterChain", filter).addMappingForUrlPatterns(null, false, "/*");
+
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
 

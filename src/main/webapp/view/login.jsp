@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../../includes/header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <style>
@@ -146,8 +146,18 @@
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
-        <c:url value="/admin/login" var="loginVar"/>
+        <c:url value="/login" var="loginVar"/>
         <form class="form-signin" action="${loginVar}" method="post">
+            <c:if test="${param.error != null}">
+                <p>
+                    Invalid username and password.
+                </p>
+            </c:if>
+            <c:if test="${param.logout != null}">
+                <p>
+                    You have been logged out.
+                </p>
+            </c:if>
             <span id="reauth-email" class="reauth-email"></span>
             <input name="j_username" type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
             <input name="j_password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
@@ -164,4 +174,4 @@
     </div><!-- /card-container -->
 </div><!-- /container -->
 
-<jsp:include page="../../includes/footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <c:set var="view" value="/cart" scope="session"/>
 
 <!doctype html>
@@ -59,13 +60,20 @@
                 </i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+                <sec:authorize access="isAnonymous()">
+                <a class="nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <a class="nav-link" href="<c:url value="/logout" />"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGOUT</a>
+                </sec:authorize>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
             </li>
             <li class="nav-item">
+                <sec:authorize access="isAuthenticated()">
                 <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> MY ACCOUNT</a>
+                </sec:authorize>
             </li>
         </ul>
     </div>

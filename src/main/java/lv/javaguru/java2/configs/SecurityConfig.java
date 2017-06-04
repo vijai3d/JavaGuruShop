@@ -2,19 +2,17 @@ package lv.javaguru.java2.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-/**
- * Created by Vijai3D on 01.06.2017.
- */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -31,14 +29,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
 
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/", "/login", "/index", "/category", "/addToCart", "/viewCart", "/updateCart", "/checkout","/purchase", "/confirmation", "/view/*", "/resources/**","/includes/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().usernameParameter("j_username").passwordParameter("j_password");
+                .formLogin()
+                .loginPage("/login").usernameParameter("j_username").passwordParameter("j_password");
+
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/index");
+
+
+
+        //super.configure(http);
+
+
     }
 }
