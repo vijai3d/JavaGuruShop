@@ -68,11 +68,11 @@
                 </sec:authorize>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
+                <a class="nav-link" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
             </li>
             <li class="nav-item">
                 <sec:authorize access="isAuthenticated()">
-                <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"></i> MY ACCOUNT</a>
+                <a class="nav-link" href="myAccount?${customer.Id}"><i class="fa fa-user" aria-hidden="true"></i> MY ACCOUNT</a>
                 </sec:authorize>
             </li>
         </ul>
