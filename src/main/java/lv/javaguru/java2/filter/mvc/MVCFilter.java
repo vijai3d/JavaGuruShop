@@ -70,17 +70,6 @@ public class MVCFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse)response;
         String contextURI = req.getServletPath();
 
-        HttpSession session = req.getSession(false);
-
-        // if session doesn't exist, forward user to index page
-        if (session == null) {
-            try {
-                req.getRequestDispatcher("/index.jsp").forward(request, response);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            return;
-        }
 
         if (controllerMapping.keySet().contains(contextURI)){
             MVCController controller = controllerMapping.get(contextURI);

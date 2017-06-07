@@ -29,10 +29,10 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
         return bean;
     }
 
-   /* @Bean(name = "multipartResolver")
-    public CommonsMultipartResolver getMultipartResolver() {
-        return new CommonsMultipartResolver();
-    }*/
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new RequestInterceptor()).addPathPatterns("/**");
+    }
 
     @Bean(name = "messageSource")
     public ReloadableResourceBundleMessageSource getMessageSource() {

@@ -9,7 +9,19 @@
 <sql:query var="categories" dataSource="${dataSource}">
     SELECT * FROM category
 </sql:query>--%>
-
+<c:if test="${message != null}">
+    <script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+    $(this).remove();
+    });
+    }, 2000);
+    </script>
+<div class="alert alert-success" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Sorry!</strong> ${message}
+</div>
+</c:if>
 <div class="container-fluid">
     <div class="row">
         <div class="col-3">
