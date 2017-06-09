@@ -15,9 +15,22 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
 
+    <display-name>JSPExceptionHandling</display-name>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/view/error.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/view/error.jsp</location>
+    </error-page>
+
+
     <session-config>
         <session-timeout>
-            1
+            10
         </session-timeout>
     </session-config>
 

@@ -32,9 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/login", "/signup", "/index", "/category", "/addToCart", "/viewCart", "/updateCart", "/checkout","/purchase", "/confirmation", "/view/*", "/resources/**","/includes/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/myAccount/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -44,11 +44,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/index");
-
-
-
-        //super.configure(http);
-
-
     }
 }
