@@ -3,6 +3,8 @@ package lv.javaguru.java2.domain.customer;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Vijai3D on 14.05.2017.
@@ -22,6 +24,9 @@ public class Customer {
     private String city;
     private String country;
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private List<CustomerOrder> customerOrderList;
 
     public Customer() {
     }
@@ -98,6 +103,14 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<CustomerOrder> getCustomerOrderList() {
+        return customerOrderList;
+    }
+
+    public void setCustomerOrderList(List<CustomerOrder> customerOrderList) {
+        this.customerOrderList = customerOrderList;
     }
 
     @Override

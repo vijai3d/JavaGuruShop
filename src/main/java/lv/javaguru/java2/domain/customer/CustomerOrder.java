@@ -1,6 +1,8 @@
 package lv.javaguru.java2.domain.customer;
 
 import lv.javaguru.java2.domain.orders.OrderedProduct;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -14,7 +16,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "customer_order")
-//@NamedQuery(name = "CustomerOrder.findByCustomer", query = "SELECT c FROM CustomerOrder c WHERE c.customer = :customer")
 public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +35,7 @@ public class CustomerOrder {
     private Collection<OrderedProduct> orderedProductCollection;
 
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Customer customer;
 
 

@@ -24,10 +24,13 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
 
     @Override
     public void delete(int id) throws DBException {
+        System.out.println("in delete");
         Product product = (Product) getCurrentSession().get(Product.class, new Integer(id));
         if(null != product){
+
             getCurrentSession().delete(product);
         }
+        System.out.println(product);
     }
 
     @Override

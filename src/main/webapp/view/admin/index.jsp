@@ -4,19 +4,8 @@
 
 <div class="col-8">
     <div class="card">
-<c:forEach var="customers" items="${customerList}">
 
-<table class="table table-striped">
-    <tbody>
-        <tr>
-            <td>${customers.name}</td>
-            <td>${customers.email}</td>
-            <td>${customers.country}</td>
-        </tr>
-    </tbody>
-</table>
-</c:forEach>
     </div>
 </div>
-</div>
-</body>
+</div> <--end of row
+</body> <-- end of sidebar body

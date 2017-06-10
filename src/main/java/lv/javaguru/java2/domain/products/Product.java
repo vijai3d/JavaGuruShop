@@ -42,8 +42,8 @@ public class Product {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Category category;
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
     private Collection<OrderedProduct> orderedProductCollection;
 
     public Product() {

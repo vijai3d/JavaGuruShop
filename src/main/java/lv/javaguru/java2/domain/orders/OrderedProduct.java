@@ -21,10 +21,10 @@ public class OrderedProduct {
     private short quantity;
 
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
     private Product product;
     @JoinColumn(name = "customer_order_id", referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(cascade= CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
     private CustomerOrder customerOrder;
 
     public OrderedProduct() {

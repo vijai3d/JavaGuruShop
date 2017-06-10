@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ProductService {
 
-//    TODO create more services
+
     void delete(int productId);
     void update(Customer customer);
     List<Product> getAll();

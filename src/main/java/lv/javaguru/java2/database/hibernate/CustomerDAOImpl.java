@@ -26,6 +26,7 @@ public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
 
     @Override
     public void delete(int id) throws DBException {
+        System.out.println("in CostDAODelete " + id);
         Customer customer = (Customer) getCurrentSession().get(Customer.class, new Integer(id));
         if(null != customer){
             getCurrentSession().delete(customer);
