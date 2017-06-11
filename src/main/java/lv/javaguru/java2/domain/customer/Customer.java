@@ -25,7 +25,7 @@ public class Customer {
     private String country;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany( fetch = FetchType.LAZY, mappedBy = "customer", orphanRemoval=true)
     private List<CustomerOrder> customerOrderList;
 
     public Customer() {

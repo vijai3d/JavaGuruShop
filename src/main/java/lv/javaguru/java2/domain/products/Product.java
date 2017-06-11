@@ -39,11 +39,10 @@ public class Product {
     private byte catid;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Category category;
 
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
+    @OneToMany( fetch = FetchType.LAZY ,mappedBy = "product", orphanRemoval=true)
     private Collection<OrderedProduct> orderedProductCollection;
 
     public Product() {

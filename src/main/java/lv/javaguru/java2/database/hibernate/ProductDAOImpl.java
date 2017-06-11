@@ -3,6 +3,8 @@ package lv.javaguru.java2.database.hibernate;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.products.Product;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
@@ -24,13 +26,11 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
 
     @Override
     public void delete(int id) throws DBException {
-        System.out.println("in delete");
+        System.out.println("in deleteDAO");
         Product product = (Product) getCurrentSession().get(Product.class, new Integer(id));
         if(null != product){
-
             getCurrentSession().delete(product);
         }
-        System.out.println(product);
     }
 
     @Override

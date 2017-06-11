@@ -12,7 +12,7 @@ public interface ProductService {
 
 
     void delete(int productId);
-    void update(Customer customer);
+    void update(Product product);
     List<Product> getAll();
     List<Product> getAllByCategory(byte categoryId);
     Product findById(int productId);

@@ -20,7 +20,7 @@
                     <td>${products.name}</td>
                     <td>${products.price}</td>
                     <td>
-                        <a class="btn btn-default" href="/admin/products/edit/${products.productId}" aria-label="Edit">
+                        <a class="btn btn-default" href="/admin/edit-product/${products.productId}" aria-label="Edit">
                             <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -47,7 +47,8 @@
             <c:choose>
                 <c:when test="${selectedProduct.productId == pageContext.request.queryString}">
                     <ul class="list-group">
-                        <li class="list-group-item"><strong>Customer details:</strong></li>
+                        <li class="list-group-item"><strong>Product details:</strong></li>
+                        <li class="list-group-item">Category: ${selectedProduct.category}</li>
                         <li class="list-group-item">Name: ${selectedProduct.name}</li>
                         <li class="list-group-item">Description: ${selectedProduct.description}</li>
                         <li class="list-group-item">Price: ${selectedProduct.price}</li>

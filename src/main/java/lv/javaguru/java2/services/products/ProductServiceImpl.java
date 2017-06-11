@@ -7,8 +7,6 @@ import lv.javaguru.java2.domain.products.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -25,12 +23,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(int productId) {
-
+        productDAO.delete(productId);
     }
 
     @Override
-    public void update(Customer customer) {
-
+    public void update(Product product) {
+        productDAO.update(product);
     }
 
     @Override

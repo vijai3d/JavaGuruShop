@@ -11,9 +11,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin</title>
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -168,7 +168,7 @@
 
         </style>
         <div class="nav-side-menu">
-    <div class="brand">JavaGuruShop</div>
+    <div class="brand"><a href="/index">JavaGuruShop</a> </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">

@@ -21,8 +21,7 @@ public class Category {
     @Column(name = "name")
     private String categoryName;
 
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", orphanRemoval=true)
     private Collection<Product> productCollection;
 
     public Category() {
@@ -64,9 +63,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
-                "categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                '}';
+        return categoryName;
     }
 }

@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Vijai3D on 18.05.2017.
@@ -31,13 +32,15 @@ public class CustomerOrder {
 
     @Column(name = "confirmation_number")
     private int confirmationNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
+    @OneToMany( fetch = FetchType.LAZY, mappedBy = "customerOrder", orphanRemoval=true)
     private Collection<OrderedProduct> orderedProductCollection;
 
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne( optional = false)
     private Customer customer;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customerOrder", orphanRemoval=true)
+    private List<OrderedProduct> orderedProductList;
 
     public CustomerOrder() {
     }
@@ -101,7 +104,13 @@ public class CustomerOrder {
         this.customer = customer;
     }
 
+    public List<OrderedProduct> getOrderedProductList() {
+        return orderedProductList;
+    }
 
+    public void setOrderedProductList(List<OrderedProduct> orderedProductList) {
+        this.orderedProductList = orderedProductList;
+    }
 
     @Override
     public String toString() {
