@@ -5,7 +5,6 @@ package lv.javaguru.java2.controllers;
  */
 
 
-import lv.javaguru.java2.database.hibernate.ProductDAO;
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.products.Category;
@@ -13,21 +12,18 @@ import lv.javaguru.java2.domain.products.Product;
 import lv.javaguru.java2.services.CustomerOrderService;
 import lv.javaguru.java2.services.CustomerService;
 import lv.javaguru.java2.services.products.CategoryService;
+import lv.javaguru.java2.services.products.ProductFactory;
 import lv.javaguru.java2.services.products.ProductService;
+import lv.javaguru.java2.utils.DecimalFormatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.ParseException;
 import java.util.List;
 
 
@@ -44,6 +40,12 @@ public class AdminController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private DecimalFormatUtil decimalFormatUtil;
+
+    @Autowired
+    private ProductFactory productFactory;
 
 
     @GetMapping("/admin")
@@ -107,33 +109,40 @@ public class AdminController {
         HttpSession session = request.getSession();
 
         Product product = (Product) session.getAttribute("selectedProduct");
-        Category cat = (Category) session.getAttribute("productCategory");
-        //TODO cat is null
-        System.out.println(cat);
+
+        String selectedCategoryId = request.getParameter("productCategoryId");
+        Category cat = categoryService.getById(Byte.parseByte(selectedCategoryId));
         product.setCategory(cat);
+
         String name = request.getParameter("productName");
         product.setName(name);
         String desc = request.getParameter("productDesc");
         product.setDescription(desc);
         String price = request.getParameter("productPrice");
-        //TODO Refactoring needed: create bean from that
-        // Create a DecimalFormat that fits your requirements
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setGroupingSeparator(',');
-        symbols.setDecimalSeparator('.');
-        String pattern = "#,##0.0#";
-        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-        decimalFormat.setParseBigDecimal(true);
-        try {
-            BigDecimal priceFormatted = (BigDecimal) decimalFormat.parse(price);
-            product.setPrice(priceFormatted);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        product.setPrice(decimalFormatUtil.format(price));
 
         productService.update(product);
-        return "/admin/edit-product";
+        return "redirect:/admin/products";
     }
+
+    @RequestMapping("/admin/products/new")
+    public String newProduct(Model model) {
+        List<Category> categoryList = categoryService.getAll();
+        model.addAttribute("categoryList", categoryList);
+        return "/admin/add-product";
+    }
+
+    @RequestMapping("/admin/products/add")
+    public String addProduct(HttpServletRequest request) {
+        String selectedCategoryId = request.getParameter("productCategoryId");
+        Category cat = categoryService.getById(Byte.parseByte(selectedCategoryId));
+        String name = request.getParameter("productName");
+        String desc = request.getParameter("productDesc");
+        String price = request.getParameter("productPrice");
+        productFactory.create(name, desc, decimalFormatUtil.format(price), cat);
+        return "redirect:/admin/products";
+    }
+
     @GetMapping("/login")
     public String login(Model model) {
 

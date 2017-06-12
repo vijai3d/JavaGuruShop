@@ -3,6 +3,7 @@ package lv.javaguru.java2.configs;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -40,6 +41,14 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
         resource.setBasename("classpath:messages");
         resource.setDefaultEncoding("UTF-8");
         return resource;
+    }
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver createMultipartResolver() {
+        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        resolver.setMaxUploadSize(100000);
+        return resolver;
     }
 
 }

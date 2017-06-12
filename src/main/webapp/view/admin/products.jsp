@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="sidebar.jsp"/>
 
+
+
+
 <div class="col-5" style="margin-top: 20px;">
     <div class="card">
         <table class="table table-striped">
@@ -11,6 +14,10 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Price</th>
+                <th colspan="3" >
+                    <a class="btn btn-primary" href="/admin/products/new" style="float: right">
+                        <i class="fa fa-plus"></i> Add</a>
+                </th>
             </tr>
             </thead>
             <tbody>
