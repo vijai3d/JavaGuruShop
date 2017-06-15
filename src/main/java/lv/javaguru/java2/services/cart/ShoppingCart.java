@@ -1,4 +1,4 @@
-package lv.javaguru.java2.cart;
+package lv.javaguru.java2.services.cart;
 
 import lv.javaguru.java2.domain.products.Product;
 import java.util.*;

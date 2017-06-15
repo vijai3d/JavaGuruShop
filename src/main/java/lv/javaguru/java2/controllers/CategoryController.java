@@ -1,23 +1,14 @@
 package lv.javaguru.java2.controllers;
 
 import lv.javaguru.java2.domain.products.Category;
-import lv.javaguru.java2.services.CustomerService;
 import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductService;
-import lv.javaguru.java2.filter.mvc.MVCController;
-import lv.javaguru.java2.filter.mvc.MVCModel;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 /**
  * Created by Vijai3D on 07.05.2017.
@@ -27,11 +18,8 @@ import javax.transaction.Transactional;
 public class CategoryController {
 
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
-    private ProductService productService;
+    @Autowired private CategoryService categoryService;
+    @Autowired private ProductService productService;
 
     @GetMapping
     public String showCategoryViews(HttpServletRequest request) {

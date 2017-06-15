@@ -1,10 +1,5 @@
 package lv.javaguru.java2.controllers;
 
-/**
- * Created by Vijai3D on 31.05.2017.
- */
-
-
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.products.Category;
@@ -14,38 +9,44 @@ import lv.javaguru.java2.services.CustomerService;
 import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductFactory;
 import lv.javaguru.java2.services.products.ProductService;
-import lv.javaguru.java2.utils.DecimalFormatUtil;
+import lv.javaguru.java2.services.utils.DecimalFormatUtil;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+
 
 
 @Controller
 public class AdminController {
-    @Autowired
-    private CustomerService customerService;
 
-    @Autowired
-    private CustomerOrderService customerOrderService;
+    private Path path;
+    private static final Resource PICTURES_DIR = new
+            FileSystemResource("v/img");
 
-    @Autowired
-    private ProductService productService;
+    @Autowired private CustomerService customerService;
 
-    @Autowired
-    private CategoryService categoryService;
+    @Autowired private CustomerOrderService customerOrderService;
 
-    @Autowired
-    private DecimalFormatUtil decimalFormatUtil;
+    @Autowired private ProductService productService;
 
-    @Autowired
-    private ProductFactory productFactory;
+    @Autowired private CategoryService categoryService;
+
+    @Autowired private DecimalFormatUtil decimalFormatUtil;
+
+    @Autowired private ProductFactory productFactory;
 
 
     @GetMapping("/admin")
@@ -71,6 +72,7 @@ public class AdminController {
 
     @GetMapping("/admin/customers/delete/{id}")
     public String deleteCustomer(@PathVariable("id") Integer id) {
+
         customerService.delete(id);
         return "redirect:/admin/customers";
     }
@@ -89,8 +91,17 @@ public class AdminController {
     }
 
     @GetMapping("/admin/products/delete/{id}")
-    public String deleteProduct(@PathVariable("id") int productId) {
-        System.out.println("in delete controller");
+    public String deleteProduct(@PathVariable("id") int productId, HttpServletRequest request) {
+        Product product = productService.findById(productId);
+        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        path = Paths.get(rootDirectory + "\\resources\\productImages\\" + product.getName() + ".png" );
+        if (Files.exists(path)) {
+            try {
+                Files.delete(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         productService.delete(productId);
         return "redirect:/admin/products";
     }
@@ -125,23 +136,47 @@ public class AdminController {
         return "redirect:/admin/products";
     }
 
-    @RequestMapping("/admin/products/new")
-    public String newProduct(Model model) {
+    @RequestMapping("/admin/products/add")
+    public String addProduct(Model model) {
         List<Category> categoryList = categoryService.getAll();
         model.addAttribute("categoryList", categoryList);
         return "/admin/add-product";
     }
 
-    @RequestMapping("/admin/products/add")
-    public String addProduct(HttpServletRequest request) {
+    @RequestMapping(value = "/admin/products/add", method = RequestMethod.POST)
+    public String addProductPost(@RequestParam("productImage") CommonsMultipartFile productImage, HttpServletRequest request) throws IOException {
         String selectedCategoryId = request.getParameter("productCategoryId");
         Category cat = categoryService.getById(Byte.parseByte(selectedCategoryId));
         String name = request.getParameter("productName");
         String desc = request.getParameter("productDesc");
         String price = request.getParameter("productPrice");
-        productFactory.create(name, desc, decimalFormatUtil.format(price), cat);
+        Product product = productFactory.create(name, desc, decimalFormatUtil.format(price), cat);
+
+        String filename = productImage.getOriginalFilename();
+        File tempFile = File.createTempFile("pic",
+                getFileExtension(filename), PICTURES_DIR.getFile());
+        try (InputStream in = productImage.getInputStream();
+             OutputStream out = new FileOutputStream(tempFile)) {
+            IOUtils.copy(in, out);
+        }
         return "redirect:/admin/products";
     }
+    private static String getFileExtension(String name) {
+        return name.substring(name.lastIndexOf("."));
+    }
+
+       /* String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+        path = Paths.get(rootDirectory + "\\resources\\images\\products\\" + product.getProductId() + ".png" );
+        if (productImage != null && !productImage.isEmpty()) {
+            try {
+                productImage.transferTo(new File(path.toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException("Product image saving failed", e);
+            }
+        }*/
+
+
 
     @GetMapping("/login")
     public String login(Model model) {

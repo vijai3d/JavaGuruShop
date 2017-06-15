@@ -6,12 +6,11 @@
  * http://developer.sun.com/berkeley_license.html
  */
 
-package lv.javaguru.java2.validators;
+package lv.javaguru.java2.services.validators;
 
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 
 /**
  *

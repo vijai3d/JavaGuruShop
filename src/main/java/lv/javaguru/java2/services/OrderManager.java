@@ -1,8 +1,7 @@
 package lv.javaguru.java2.services;
 
-import lv.javaguru.java2.cart.ShoppingCart;
-import lv.javaguru.java2.cart.ShoppingCartItem;
-import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.services.cart.ShoppingCart;
+import lv.javaguru.java2.services.cart.ShoppingCartItem;
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.orders.OrderedProduct;

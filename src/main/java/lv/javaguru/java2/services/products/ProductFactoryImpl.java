@@ -4,7 +4,7 @@ package lv.javaguru.java2.services.products;
 import lv.javaguru.java2.database.hibernate.ProductDAO;
 import lv.javaguru.java2.domain.products.Category;
 import lv.javaguru.java2.domain.products.Product;
-import lv.javaguru.java2.validators.ProductValidator;
+import lv.javaguru.java2.services.validators.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class ProductFactoryImpl implements ProductFactory {
     private ProductValidator productValidator;
 
     @Override
-    public void create(String name, String description, BigDecimal price, Category category) {
+    public Product create(String name, String description, BigDecimal price, Category category) {
 
         productValidator.validate(name, description, price, category);
 
@@ -38,5 +38,6 @@ public class ProductFactoryImpl implements ProductFactory {
                 .withCategory(category).build();
 
        productDAO.create(product);
+       return product;
     }
 }

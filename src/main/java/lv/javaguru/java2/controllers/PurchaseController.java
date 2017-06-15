@@ -1,12 +1,9 @@
 package lv.javaguru.java2.controllers;
 
-import lv.javaguru.java2.cart.ShoppingCart;
+import lv.javaguru.java2.services.cart.ShoppingCart;
 import lv.javaguru.java2.services.OrderManager;
-import lv.javaguru.java2.validators.Validator;
-import lv.javaguru.java2.filter.mvc.MVCController;
-import lv.javaguru.java2.filter.mvc.MVCModel;
+import lv.javaguru.java2.services.validators.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

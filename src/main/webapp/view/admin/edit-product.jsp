@@ -30,6 +30,11 @@
                 <input type="text" class="form-control" id="inputPrice" aria-describedby="emailHelp"
                        value="${selectedProduct.price}" name="productPrice">
             </div>
+            <div class="form-group" col-5>
+                <label for="exampleInputFile">Upload image</label>
+                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="productImage">
+                <small id="fileHelp" class="form-text text-muted">Max size of image is 1Mb and dimensions 1024x1024px</small>
+            </div>
             <input type="hidden"
                    name="productId"
                    value="${selectedProduct.productId}">

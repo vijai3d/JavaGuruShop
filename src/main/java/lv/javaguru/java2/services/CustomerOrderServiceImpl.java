@@ -3,6 +3,7 @@ package lv.javaguru.java2.services;
 import lv.javaguru.java2.database.hibernate.CustomerOrderDAO;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;

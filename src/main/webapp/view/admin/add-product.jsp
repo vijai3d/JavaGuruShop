@@ -4,10 +4,10 @@
 
 <div class="col-6" style="margin-top: 20px;">
     <div class="card">
-        <form action="/admin/products/add" method="post">
+        <form action="${pageContext.request.contextPath}/admin/products/add" method="post" enctype="multipart/form-data">
             <div class="form-group col-6">
                 <label>Category</label>
-                <select class="form-control" id="categorySelect" name="productCategoryId">
+                <select class="form-control" id="categorySelect"  name="productCategoryId">
                     <c:forEach var="categories" items="${categoryList}">
                         <option value="${categories.categoryId}">${categories.categoryName}</option>
                     </c:forEach>
@@ -16,21 +16,21 @@
             <div class="form-group col-6">
                 <label for="exampleInputName">Name:</label>
                 <input  type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp"
-                         name="productName">
+                         name="productName" value="Title"/>
             </div>
             <div class="form-group col-12">
                 <label for="description">Description:</label>
-                <textarea class="form-control" id="description" rows="6"
-                          name="productDesc"></textarea>
+                <textarea  class="form-control" id="description" rows="6"
+                          name="productDesc" ></textarea>
             </div>
             <div class="form-group col-2">
                 <label for="inputPrice">Price:</label>
-                <input type="text" class="form-control" id="inputPrice" aria-describedby="emailHelp"
-                       value="" name="productPrice">
+                <input  type="text" class="form-control" id="inputPrice" aria-describedby="emailHelp"
+                        name="productPrice"/>
             </div>
             <div class="form-group" col-5>
                 <label for="exampleInputFile">Upload image</label>
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="productImage"/>
                 <small id="fileHelp" class="form-text text-muted">Max size of image is 1Mb and dimensions 1024x1024px</small>
             </div>
 

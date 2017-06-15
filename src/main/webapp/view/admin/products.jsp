@@ -12,10 +12,11 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>Image</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th colspan="3" >
-                    <a class="btn btn-primary" href="/admin/products/new" style="float: right">
+                    <a class="btn btn-primary" href="/admin/products/add" style="float: right">
                         <i class="fa fa-plus"></i> Add</a>
                 </th>
             </tr>
@@ -24,6 +25,9 @@
             <c:forEach var="products" items="${productsList}" varStatus="iter">
                 <tr>
                     <th scope="row">${iter.index + 1}</th>
+                    <th><img class="card-img-top" data-src="../resources/productImages/${products.productId}.png" alt="${product.name}"
+                             src="../resources/images/products/${products.productId}.png"
+                                 data-holder-rendered="true" style="height: 60px; width: 100%; display: block;"></th>
                     <td>${products.name}</td>
                     <td>${products.price}</td>
                     <td>
@@ -59,6 +63,10 @@
                         <li class="list-group-item">Name: ${selectedProduct.name}</li>
                         <li class="list-group-item">Description: ${selectedProduct.description}</li>
                         <li class="list-group-item">Price: ${selectedProduct.price}</li>
+                        <li class="list-group-item">Image:
+                            <img class="card-img-top"  alt="${selectedProduct.name}"
+                                 src="../resources/productImages/${selectedProduct.name}.png"
+                                 data-holder-rendered="true" style="height: 100%px; width: 100%; display: block;"></li>
                     </ul>
                 </c:when>
             </c:choose>

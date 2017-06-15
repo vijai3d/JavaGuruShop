@@ -12,7 +12,7 @@ import static lv.javaguru.java2.domain.products.CategoryBuilder.createCategory;
  */
 @Component
 //@Transactional
-public class CategoryFactoryImpl  implements CategoryFactory{
+class CategoryFactoryImpl  implements CategoryFactory{
     @Autowired
     private CategoryDAO categoryDAO;
 

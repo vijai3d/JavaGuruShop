@@ -1,4 +1,4 @@
-package lv.javaguru.java2.validators;
+package lv.javaguru.java2.services.validators;
 
 import lv.javaguru.java2.domain.products.Category;
 import org.springframework.stereotype.Component;

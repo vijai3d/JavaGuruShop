@@ -1,4 +1,4 @@
-package lv.javaguru.java2.utils;
+package lv.javaguru.java2.services.utils;
 
 
 import org.springframework.stereotype.Component;
