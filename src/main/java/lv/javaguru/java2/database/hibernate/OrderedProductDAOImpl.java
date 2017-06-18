@@ -21,8 +21,4 @@ public class OrderedProductDAOImpl extends DAOImpl<OrderedProduct> implements Or
                 .list();
     }
 
-    @Override
-    public List<Object[]> getAllofTwo() throws DBException {
-        return null;
-    }
 }

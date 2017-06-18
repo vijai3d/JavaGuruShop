@@ -27,9 +27,11 @@
                     <th scope="row">${iter.index + 1}</th>
                     <th><c:forEach var="pictures" items="${pictureList}" varStatus="iter">
                         <c:if test="${pictures.product.equals(products)}">
-                        <img class="card-img-top" data-src="" alt="${pictures.name}"
-                             src=""
-                                 data-holder-rendered="true" style="height: 60px; width: 100%; display: block;">
+                            <c:if test="${pictures.prymary != 1}">
+                            <img class="card-img-top" alt="${pictures.name}"
+                             src="data:image/png;base64,${pictures.encodedData}"
+                                 data-holder-rendered="true" style="height: 60px; display: block;">
+                            </c:if>
                         </c:if>
                     </c:forEach>
                     </th>
@@ -68,10 +70,18 @@
                         <li class="list-group-item">Name: ${selectedProduct.name}</li>
                         <li class="list-group-item">Description: ${selectedProduct.description}</li>
                         <li class="list-group-item">Price: ${selectedProduct.price}</li>
-                        <li class="list-group-item">Image:
-                            <img class="card-img-top"  alt="${selectedProduct.name}"
-                                 src="../resources/productImages/${selectedProduct.name}.png"
-                                 data-holder-rendered="true" style="height: 100px; width: 100%; display: block;"></li>
+                        <li class="list-group-item"><ul class="list-group">Images:
+                            <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
+                                <c:if test="${pictures.product.equals(selectedProduct)}">
+                                        <li class="list-group-item">
+                                        <img class="card-img-top" alt="${pictures.name}"
+                                             src="data:image/png;base64,${pictures.encodedData}"
+                                             data-holder-rendered="true" style="height: 170px; display: block;">
+                                        </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                        </li>
                     </ul>
                 </c:when>
             </c:choose>

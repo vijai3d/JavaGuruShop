@@ -15,6 +15,7 @@ import java.util.Arrays;
 public class Pictures {
     private long id;
     private byte[] imageData;
+    private String encodedData;
     private String name;
     private Integer prymary;
     private Product product;
@@ -54,6 +55,16 @@ public class Pictures {
     @Column(name = "prymary", nullable = true)
     public Integer getPrymary() {
         return prymary;
+    }
+
+    @Basic
+    @Column(name="encoded_data", nullable = false)
+    public String getEncodedData() {
+        return encodedData;
+    }
+
+    public void setEncodedData(String encodedData) {
+        this.encodedData = encodedData;
     }
 
     public void setPrymary(Integer prymary) {

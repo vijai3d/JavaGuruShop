@@ -76,9 +76,17 @@
                 <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
                     <div class="col-sm-12 col-md-4 col-lg-3">
                         <div class="card card-block">
-                            <img class="card-img-top" alt="${product.name}"
-                                 src="resources/images/products/${product.productId}.png"
-                                 data-holder-rendered="true" style="height: 180px; width: 100%; display: block;">
+                            <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
+                                <c:if test="${pictures.product.equals(product)}">
+                                <c:if test="${pictures.prymary != 1}">
+                                    <li class="list-group-item">
+                                        <img class="card-img-top" alt="${pictures.name}"
+                                             src="data:image/png;base64,${pictures.encodedData}"
+                                             data-holder-rendered="true" style="height: 180px; width: 100%; display: block;">
+                                    </li>
+                                </c:if>
+                                </c:if>
+                            </c:forEach>
                             <div class="card-block">
                                 <h4 class="card-title">${product.name}</h4>
                                 <p class="card-text">${fn:substring(product.description, 0, 22)}...</p>

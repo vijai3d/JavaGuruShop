@@ -49,9 +49,4 @@ class CategoryDAOImpl extends DAOImpl<Category> implements CategoryDAO{
           List<Category> categoryList = getCurrentSession().createQuery("from Category").list();
           return categoryList;
      }
-
-     @Override
-     public List<Object[]> getAllofTwo() throws DBException {
-          return null;
-     }
 }

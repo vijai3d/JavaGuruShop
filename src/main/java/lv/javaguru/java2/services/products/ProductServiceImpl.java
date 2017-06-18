@@ -1,7 +1,9 @@
 package lv.javaguru.java2.services.products;
 
 
+import lv.javaguru.java2.database.hibernate.FileUploadDAO;
 import lv.javaguru.java2.database.hibernate.ProductDAO;
+import lv.javaguru.java2.domain.Pictures;
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.products.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     @Qualifier("HibernateProductDAOImpl")
     private ProductDAO productDAO;
+
+    @Autowired
+    private FileUploadDAO fileUploadDAO;
 
     @Override
     public void delete(int productId) {
@@ -47,11 +52,5 @@ public class ProductServiceImpl implements ProductService {
     public Product findById(int productId) {
         Product product = productDAO.getById(productId);
         return product;
-    }
-
-    @Override
-    public List<Object[]> getAllofTwo() {
-        List<Object[]> listProducts = productDAO.getAllofTwo();
-        return listProducts;
     }
 }

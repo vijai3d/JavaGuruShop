@@ -27,9 +27,4 @@ public class CustomerOrderDAOImpl extends DAOImpl<CustomerOrder> implements Cust
                 .setParameter("customer", customer).list();
          return customerOrders;
     }
-
-    @Override
-    public List<Object[]> getAllofTwo() throws DBException {
-        return null;
-    }
 }

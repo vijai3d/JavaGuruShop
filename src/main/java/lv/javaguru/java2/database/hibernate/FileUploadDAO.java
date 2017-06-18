@@ -19,8 +19,7 @@ public interface FileUploadDAO {
 @Repository
 @Transactional
 class FileUploadDAOImpl extends DAOImpl<Pictures> implements FileUploadDAO {
-    @Autowired
-    private SessionFactory sessionFactory;
+    @Autowired private SessionFactory sessionFactory;
 
     public FileUploadDAOImpl() {
     }
@@ -40,10 +39,5 @@ class FileUploadDAOImpl extends DAOImpl<Pictures> implements FileUploadDAO {
         List<Pictures> pictures = getCurrentSession().createQuery("from Pictures")
                 .list();
         return pictures;
-    }
-
-    @Override
-    public List<Object[]> getAllofTwo() throws DBException {
-        return null;
     }
 }

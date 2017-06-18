@@ -43,9 +43,4 @@ public class CustomerDAOImpl extends DAOImpl<Customer> implements CustomerDAO {
         List<Customer> customersList = getCurrentSession().createQuery("from Customer").list();
         return customersList;
     }
-
-    @Override
-    public List<Object[]> getAllofTwo() throws DBException {
-        return null;
-    }
 }

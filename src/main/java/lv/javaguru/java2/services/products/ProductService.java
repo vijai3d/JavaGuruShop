@@ -1,5 +1,6 @@
 package lv.javaguru.java2.services.products;
 
+import lv.javaguru.java2.domain.Pictures;
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.products.Product;
 
@@ -16,5 +17,4 @@ public interface ProductService {
     List<Product> getAll();
     List<Product> getAllByCategory(Long categoryId);
     Product findById(int productId);
-    List<Object[]> getAllofTwo();
 }

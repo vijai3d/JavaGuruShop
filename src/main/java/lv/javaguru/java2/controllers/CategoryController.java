@@ -1,5 +1,7 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.database.hibernate.FileUploadDAO;
+import lv.javaguru.java2.domain.Pictures;
 import lv.javaguru.java2.domain.products.Category;
 import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductService;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by Vijai3D on 07.05.2017.
@@ -20,6 +23,7 @@ public class CategoryController {
 
     @Autowired private CategoryService categoryService;
     @Autowired private ProductService productService;
+    @Autowired private FileUploadDAO fileUploadDAO;
 
     @GetMapping
     public String showCategoryViews(HttpServletRequest request) {
@@ -35,7 +39,10 @@ public class CategoryController {
 
 
             session.setAttribute("categoryProducts", productService.getAllByCategory(Long.valueOf(categoryId)));
+
         }
+        List<Pictures> pictureList = fileUploadDAO.getAll();
+        session.setAttribute("pictureList", pictureList);
         return "category";
     }
 }
