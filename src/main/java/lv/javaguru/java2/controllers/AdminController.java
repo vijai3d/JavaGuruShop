@@ -1,5 +1,7 @@
 package lv.javaguru.java2.controllers;
 
+import lv.javaguru.java2.database.hibernate.FileUploadDAO;
+import lv.javaguru.java2.domain.Pictures;
 import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.domain.customer.CustomerOrder;
 import lv.javaguru.java2.domain.products.Category;
@@ -10,10 +12,7 @@ import lv.javaguru.java2.services.products.CategoryService;
 import lv.javaguru.java2.services.products.ProductFactory;
 import lv.javaguru.java2.services.products.ProductService;
 import lv.javaguru.java2.services.utils.DecimalFormatUtil;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +23,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,8 +33,6 @@ import java.util.List;
 public class AdminController {
 
     private Path path;
-    private static final Resource PICTURES_DIR = new
-            FileSystemResource("v/img");
 
     @Autowired private CustomerService customerService;
 
@@ -48,6 +46,8 @@ public class AdminController {
 
     @Autowired private ProductFactory productFactory;
 
+    @Autowired
+    private FileUploadDAO fileUploadDAO;
 
     @GetMapping("/admin")
     public String index(Model model) {
@@ -81,12 +81,33 @@ public class AdminController {
     public String viewProducts(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String productId = request.getQueryString();
-        List<Product> products= productService.getAll();
-        session.setAttribute("productsList", products);
+        List<Product> productList = productService.getAll();
+        List<Pictures> pictureList = fileUploadDAO.getAll();
+       /* List<Object[]> products= productService.getAllofTwo();
+        List<Product> prList = new ArrayList<>();
+        List<Pictures> picList = new ArrayList<>();
+        for (Object result[] : products) {
+            prList.add((Product) result[0]);
+            System.out.println(prList);
+        }
+
+        int picount =0;
+        for (Object result[] : products  ) {
+            picList.add((Pictures) result[1]);
+            picount++;
+            System.out.println(picList + " " + picount);
+        }*/
+        session.setAttribute("pictureList", pictureList);
+        session.setAttribute("productsList", productList);
         if (productId != null) {
             Product selectedProduct = productService.findById(Integer.parseInt(productId));
             session.setAttribute("selectedProduct", selectedProduct);
         }
+
+      /*  byte[] bytes;
+        byte[] encodeBase64 = Base64.encodeBase64(bytes);
+        String base64Encoded = new String(encodeBase64, "UTF-8");
+        session.setAttribute("picture", base64Encoded);*/
         return "/admin/products";
     }
 
@@ -94,7 +115,7 @@ public class AdminController {
     public String deleteProduct(@PathVariable("id") int productId, HttpServletRequest request) {
         Product product = productService.findById(productId);
         String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\resources\\productImages\\" + product.getName() + ".png" );
+        path = Paths.get(rootDirectory + "\\resources\\productImages\\" + product.getProductId() + ".png" );
         if (Files.exists(path)) {
             try {
                 Files.delete(path);
@@ -122,7 +143,7 @@ public class AdminController {
         Product product = (Product) session.getAttribute("selectedProduct");
 
         String selectedCategoryId = request.getParameter("productCategoryId");
-        Category cat = categoryService.getById(Byte.parseByte(selectedCategoryId));
+        Category cat = categoryService.getById(Long.parseLong(selectedCategoryId));
         product.setCategory(cat);
 
         String name = request.getParameter("productName");
@@ -144,37 +165,38 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/products/add", method = RequestMethod.POST)
-    public String addProductPost(@RequestParam("productImage") CommonsMultipartFile productImage, HttpServletRequest request) throws IOException {
+    public String addProductPost(@RequestParam("productImage") CommonsMultipartFile[] productImage, HttpServletRequest request) throws IOException {
         String selectedCategoryId = request.getParameter("productCategoryId");
-        Category cat = categoryService.getById(Byte.parseByte(selectedCategoryId));
+        Category cat = categoryService.getById(Long.parseLong(selectedCategoryId));
         String name = request.getParameter("productName");
         String desc = request.getParameter("productDesc");
         String price = request.getParameter("productPrice");
+        String isPrimaryValue = request.getParameter("isPrimaryValue");
         Product product = productFactory.create(name, desc, decimalFormatUtil.format(price), cat);
 
-        String filename = productImage.getOriginalFilename();
-        File tempFile = File.createTempFile("pic",
-                getFileExtension(filename), PICTURES_DIR.getFile());
-        try (InputStream in = productImage.getInputStream();
-             OutputStream out = new FileOutputStream(tempFile)) {
-            IOUtils.copy(in, out);
+        int numberOfUploadedPictures = 0;
+        if (productImage != null && productImage.length > 0) {
+            for (CommonsMultipartFile aFile : productImage){
+                numberOfUploadedPictures++;
+                Pictures pictures = new Pictures();
+                pictures.setName(aFile.getOriginalFilename());
+                pictures.setImageData(aFile.getBytes());
+                pictures.setProduct(product);
+                if (isPrimaryValue.equals(String.valueOf(numberOfUploadedPictures)) ) {
+                    pictures.setPrymary(1);
+                }
+                fileUploadDAO.save(pictures);
+            }
         }
+
+
+
+
+
+
         return "redirect:/admin/products";
     }
-    private static String getFileExtension(String name) {
-        return name.substring(name.lastIndexOf("."));
-    }
 
-       /* String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\resources\\images\\products\\" + product.getProductId() + ".png" );
-        if (productImage != null && !productImage.isEmpty()) {
-            try {
-                productImage.transferTo(new File(path.toString()));
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new RuntimeException("Product image saving failed", e);
-            }
-        }*/
 
 
 

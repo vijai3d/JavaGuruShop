@@ -40,12 +40,19 @@ public class ProductDAOImpl extends DAOImpl<Product> implements ProductDAO{
     }
 
     @Override
-    public List<Product> getAll() throws DBException {
-        List<Product> productsList = getCurrentSession().createQuery("from Product").list();
+    public List<Product> getAll() {
+        List<Product> products = getCurrentSession().createQuery("from Product ").list();
+        return products;
+    }
+
+    @Override
+    public List<Object[]> getAllofTwo() throws DBException {
+        List<Object[]> productsList = getCurrentSession().createQuery("SELECT pr, pic FROM Product pr, Pictures pic")
+                .list();
         return productsList;
     }
     @Override
-    public List<Product> getAllByCategory(byte categoryId) throws DBException {
+    public List<Product> getAllByCategory(Long categoryId) throws DBException {
         List<Product> products = (List<Product>) getCurrentSession().createQuery("from Product where catid = :id")
                 .setParameter("id", categoryId)
                 .list();

@@ -13,8 +13,8 @@ public interface CategoryDAO {
      void create(Category category);
      void update(Category category);
      List<Category> getAll();
-     void delete(byte id);
-     Category getById(byte id);
+     void delete(Long id);
+     Category getById(Long id);
 }
 
 @Component("HibernateCategoryDAOImpl")
@@ -31,16 +31,16 @@ class CategoryDAOImpl extends DAOImpl<Category> implements CategoryDAO{
      }
 
      @Override
-     public void delete(byte id)  throws DBException {
-          Category category = (Category) getCurrentSession().get(Category.class, new Byte(id));
+     public void delete(Long id)  throws DBException {
+          Category category = (Category) getCurrentSession().get(Category.class, new Long(id));
           if(null !=  category){
                getCurrentSession().delete(category);
           }
      }
 
      @Override
-     public Category getById(byte id)  throws DBException{
-          Category category = (Category) getCurrentSession().get(Category.class, new Byte(id));
+     public Category getById(Long id)  throws DBException{
+          Category category = (Category) getCurrentSession().get(Category.class, new Long(id));
           return category;
      }
 
@@ -48,5 +48,10 @@ class CategoryDAOImpl extends DAOImpl<Category> implements CategoryDAO{
      public List<Category> getAll() throws DBException {
           List<Category> categoryList = getCurrentSession().createQuery("from Category").list();
           return categoryList;
+     }
+
+     @Override
+     public List<Object[]> getAllofTwo() throws DBException {
+          return null;
      }
 }

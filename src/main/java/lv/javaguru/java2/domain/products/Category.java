@@ -14,9 +14,9 @@ import java.util.Collection;
 @Table(name = "category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private byte categoryId;
+    private Long categoryId;
 
     @Column(name = "name")
     private String categoryName;
@@ -28,20 +28,20 @@ public class Category {
 
     }
 
-    public Category(byte categoryId) {
+    public Category(Long categoryId) {
         this.categoryId = categoryId;
     }
 
-    public Category(byte categoryId, String categoryName) {
+    public Category(Long categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
 
-    public int getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(byte categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 

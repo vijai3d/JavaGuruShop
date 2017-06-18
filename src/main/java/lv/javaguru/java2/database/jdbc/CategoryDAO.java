@@ -17,9 +17,9 @@ import java.util.List;
 public interface CategoryDAO {
     Category save(Category category);
 
-    Category findById(Short id);
+    Category findById(Long id);
 
-    void delete(Short id);
+    void delete(Long id);
 
     void update(Category category);
 
@@ -44,7 +44,7 @@ class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
-                category.setCategoryId(rs.getByte(1));
+                category.setCategoryId(rs.getLong(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute CategoryDAOImpl.save()");
@@ -57,19 +57,19 @@ class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
     }
 
     @Override
-    public Category findById(Short categoryId) throws DBException {
+    public Category findById(Long categoryId) throws DBException {
         Connection connection = null;
 
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("select * from category where id = ?");
-            preparedStatement.setShort(1, categoryId);
+            preparedStatement.setLong(1, categoryId);
             ResultSet resultSet = preparedStatement.executeQuery();
             Category category = null;
             if (resultSet.next()) {
                 category = new Category();
-                category.setCategoryId(resultSet.getByte("id"));
+                category.setCategoryId(resultSet.getLong("id"));
                 category.setCategoryName(resultSet.getString("name"));
 
             }
@@ -84,7 +84,7 @@ class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
     }
 
     @Override
-    public void delete(Short id) {
+    public void delete(Long id) {
 
     }
 
@@ -105,7 +105,7 @@ class CategoryDAOIMmpl extends DAOImpl implements CategoryDAO{
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Category category = new Category();
-                category.setCategoryId(resultSet.getByte("id"));
+                category.setCategoryId(resultSet.getLong("id"));
                 category.setCategoryName(resultSet.getString("name"));
                 categories.add(category);
             }

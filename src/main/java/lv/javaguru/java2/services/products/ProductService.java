@@ -14,6 +14,7 @@ public interface ProductService {
     void delete(int productId);
     void update(Product product);
     List<Product> getAll();
-    List<Product> getAllByCategory(byte categoryId);
+    List<Product> getAllByCategory(Long categoryId);
     Product findById(int productId);
+    List<Object[]> getAllofTwo();
 }

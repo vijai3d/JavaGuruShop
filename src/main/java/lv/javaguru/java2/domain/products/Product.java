@@ -1,5 +1,6 @@
 package lv.javaguru.java2.domain.products;
 
+import lv.javaguru.java2.domain.Pictures;
 import lv.javaguru.java2.domain.orders.OrderedProduct;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -10,6 +11,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by Vijai3D on 23.03.2017.
@@ -37,7 +40,7 @@ public class Product {
     private Date lastUpdate;
 
     @Column(name = "category_id", insertable = false, updatable = false)
-    private byte catid;
+    private Long catid;
 
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -45,6 +48,11 @@ public class Product {
 
     @OneToMany( fetch = FetchType.LAZY ,mappedBy = "product", orphanRemoval=true)
     private Collection<OrderedProduct> orderedProductCollection;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", orphanRemoval = true)
+    private List<Pictures> pictures;
+
+
 
     public Product() {
     }
@@ -117,7 +125,15 @@ public class Product {
         this.orderedProductCollection = orderedProductCollection;
     }
 
-    public byte getCatid() {
+    public List<Pictures> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Pictures> pictures) {
+        this.pictures = pictures;
+    }
+
+    public Long getCatid() {
         return catid;
     }
 
@@ -125,5 +141,20 @@ public class Product {
     @Override
     public String toString() {
         return "entity.Product[id=" + productId + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return pictures != null ? pictures.equals(product.pictures) : product.pictures == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return pictures != null ? pictures.hashCode() : 0;
     }
 }

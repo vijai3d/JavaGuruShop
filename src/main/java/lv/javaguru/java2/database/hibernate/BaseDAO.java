@@ -16,5 +16,7 @@ public interface BaseDAO<T> {
     void update(T type) throws DBException;
 
     List<T> getAll() throws DBException;
+
+    List<Object[]> getAllofTwo() throws DBException;
 }
 

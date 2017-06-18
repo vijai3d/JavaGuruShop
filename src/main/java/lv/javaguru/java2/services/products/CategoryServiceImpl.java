@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDAO categoryDAO;
 
     @Override
-    public void delete(byte categoryId) {
+    public void delete(Long categoryId) {
 
     }
 
@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getById(byte categoryId) {
+    public Category getById(Long categoryId) {
         Category category = categoryDAO.getById(categoryId);
         return category;
     }

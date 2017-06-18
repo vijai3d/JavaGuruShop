@@ -28,10 +28,27 @@
                 <input  type="text" class="form-control" id="inputPrice" aria-describedby="emailHelp"
                         name="productPrice"/>
             </div>
-            <div class="form-group" col-5>
-                <label for="exampleInputFile">Upload image</label>
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="productImage"/>
-                <small id="fileHelp" class="form-text text-muted">Max size of image is 1Mb and dimensions 1024x1024px</small>
+            <div class="form-group" col-6>
+                <label for="exampleInputFile1">Upload image Nr1</label>
+                <input type="file" class="form-control-file" id="exampleInputFile1" aria-describedby="fileHelp" name="productImage"/>
+                <small id="fileHelp1" class="form-text text-muted">Max size of image is 1Mb and dimensions 1024x1024px</small>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="isPrimaryValue" value="1">
+                        Make Primary
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" col-6>
+                <label for="exampleInputFile2">Upload image Nr2</label>
+                <input type="file" class="form-control-file" id="exampleInputFile2" aria-describedby="fileHelp" name="productImage"/>
+                <small id="fileHelp2" class="form-text text-muted">Max size of image is 1Mb and dimensions 1024x1024px</small>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="isPrimaryValue" value="2">
+                        Make Primary
+                    </label>
+                </div>
             </div>
 
             <div class="form-group col-1">

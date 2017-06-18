@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "customer_order")
 public class CustomerOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 

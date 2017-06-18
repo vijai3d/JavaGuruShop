@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllByCategory(byte categoryId) {
+    public List<Product> getAllByCategory(Long categoryId) {
         List<Product> productListByCategory = productDAO.getAllByCategory(categoryId);
         return productListByCategory;
     }
@@ -47,5 +47,11 @@ public class ProductServiceImpl implements ProductService {
     public Product findById(int productId) {
         Product product = productDAO.getById(productId);
         return product;
+    }
+
+    @Override
+    public List<Object[]> getAllofTwo() {
+        List<Object[]> listProducts = productDAO.getAllofTwo();
+        return listProducts;
     }
 }

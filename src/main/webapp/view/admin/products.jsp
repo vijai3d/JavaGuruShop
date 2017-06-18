@@ -25,9 +25,14 @@
             <c:forEach var="products" items="${productsList}" varStatus="iter">
                 <tr>
                     <th scope="row">${iter.index + 1}</th>
-                    <th><img class="card-img-top" data-src="../resources/productImages/${products.productId}.png" alt="${product.name}"
-                             src="../resources/images/products/${products.productId}.png"
-                                 data-holder-rendered="true" style="height: 60px; width: 100%; display: block;"></th>
+                    <th><c:forEach var="pictures" items="${pictureList}" varStatus="iter">
+                        <c:if test="${pictures.product} == ${products}">
+                        <img class="card-img-top" data-src="" alt="${pictures.name}"
+                             src=""
+                                 data-holder-rendered="true" style="height: 60px; width: 100%; display: block;">
+                        </c:if>
+                    </c:forEach>
+                    </th>
                     <td>${products.name}</td>
                     <td>${products.price}</td>
                     <td>
@@ -66,7 +71,7 @@
                         <li class="list-group-item">Image:
                             <img class="card-img-top"  alt="${selectedProduct.name}"
                                  src="../resources/productImages/${selectedProduct.name}.png"
-                                 data-holder-rendered="true" style="height: 100%px; width: 100%; display: block;"></li>
+                                 data-holder-rendered="true" style="height: 100px; width: 100%; display: block;"></li>
                     </ul>
                 </c:when>
             </c:choose>

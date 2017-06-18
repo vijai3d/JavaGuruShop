@@ -26,7 +26,7 @@ public interface ProductDAO {
 
     List<Product> getAll();
 
-    List<Product> getAllByCategory(int categoryId);
+    List<Product> getAllByCategory(Long categoryId);
 }
 
 @Component("JDBCProductDAO")
@@ -42,7 +42,7 @@ class ProductDAOImpl extends DAOImpl implements ProductDAO {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setBigDecimal(3, product.getPrice());
-            preparedStatement.setInt(4, product.getCategory().getCategoryId());
+            preparedStatement.setLong(4, product.getCategory().getCategoryId());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -125,13 +125,13 @@ class ProductDAOImpl extends DAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getAllByCategory(int categoryId) throws DBException {
+    public List<Product> getAllByCategory(Long categoryId) throws DBException {
         List<Product> products = new ArrayList<Product>();
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("select * from product WHERE category_id = ?");
-            preparedStatement.setShort(1, (short) categoryId);
+            preparedStatement.setLong(1, (Long) categoryId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();

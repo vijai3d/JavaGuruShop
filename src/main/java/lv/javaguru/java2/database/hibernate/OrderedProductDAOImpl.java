@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database.hibernate;
 
+import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.orders.OrderedProduct;
 import org.springframework.stereotype.Component;
 
@@ -18,5 +19,10 @@ public class OrderedProductDAOImpl extends DAOImpl<OrderedProduct> implements Or
         return getCurrentSession().createQuery("SELECT o FROM OrderedProduct o WHERE o.orderedProductPK.customerOrderId = :customerOrderId")
                 .setParameter("customerOrderId", id)
                 .list();
+    }
+
+    @Override
+    public List<Object[]> getAllofTwo() throws DBException {
+        return null;
     }
 }

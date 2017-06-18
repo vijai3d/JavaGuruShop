@@ -8,7 +8,8 @@ public interface ProductDAO extends BaseDAO<Product> {
      void create(Product product);
      void update(Product product);
      List<Product> getAll();
+     List<Object[]> getAllofTwo();
      void delete(int id);
      Product getById(int id);
-     List<Product> getAllByCategory(byte categoryId);
+     List<Product> getAllByCategory(Long categoryId);
 }

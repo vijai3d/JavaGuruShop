@@ -29,10 +29,12 @@ public class CategoryController {
         String categoryId = request.getQueryString();
         if (categoryId != null) {
             // get selected by user category
-            Category selectedCategory = categoryService.getById(Byte.valueOf(categoryId));
+            Category selectedCategory = categoryService.getById(Long.valueOf(categoryId));
             session.setAttribute("selectedCategory", selectedCategory);
             // get all products for selected category
-            session.setAttribute("categoryProducts", productService.getAllByCategory(Byte.valueOf(categoryId)));
+
+
+            session.setAttribute("categoryProducts", productService.getAllByCategory(Long.valueOf(categoryId)));
         }
         return "category";
     }
