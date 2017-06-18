@@ -26,7 +26,7 @@
                 <tr>
                     <th scope="row">${iter.index + 1}</th>
                     <th><c:forEach var="pictures" items="${pictureList}" varStatus="iter">
-                        <c:if test="${pictures.product} == ${products}">
+                        <c:if test="${pictures.product.equals(products)}">
                         <img class="card-img-top" data-src="" alt="${pictures.name}"
                              src=""
                                  data-holder-rendered="true" style="height: 60px; width: 100%; display: block;">

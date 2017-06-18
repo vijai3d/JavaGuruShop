@@ -150,11 +150,11 @@ public class Product {
 
         Product product = (Product) o;
 
-        return pictures != null ? pictures.equals(product.pictures) : product.pictures == null;
+        return productId != null ? productId.equals(product.productId) : product.productId == null;
     }
 
     @Override
     public int hashCode() {
-        return pictures != null ? pictures.hashCode() : 0;
+        return productId != null ? productId.hashCode() : 0;
     }
 }
