@@ -2,6 +2,9 @@
 <jsp:include page="../includes/header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <style>
 
     body, html {
@@ -151,7 +154,7 @@
             <c:if test="${param.error != null}">
                 <p>
                     Invalid username and password.
-                </p>
+                </p>jj
             </c:if>
             <c:if test="${param.logout != null}">
                 <p>
@@ -160,6 +163,9 @@
             </c:if>
             <span id="reauth-email" class="reauth-email"></span>
             <input name="j_username" type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
+            <div>
+                   ${message}
+            </div>
             <input name="j_password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
             <div id="remember" class="checkbox">
                <%-- <label>

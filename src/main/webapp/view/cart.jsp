@@ -75,7 +75,7 @@
             </c:when>
             <%-- otherwise send user to welcome page --%>
             <c:otherwise>
-                index.jsp
+                /index
             </c:otherwise>
         </c:choose>
     </c:set>

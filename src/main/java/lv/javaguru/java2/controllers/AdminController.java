@@ -16,18 +16,19 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 @Controller
@@ -80,9 +81,9 @@ public class AdminController {
 
 
 
-    @GetMapping("/login")
-    public String login(Model model) {
-
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
         return "/login";
     }
+
 }

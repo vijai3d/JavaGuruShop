@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class AdminProductController {
     }
 
     @RequestMapping(value = "/admin/products/add", method = RequestMethod.POST)
-    public String addProductPost(@RequestParam("productImage") CommonsMultipartFile[] productImage, HttpServletRequest request) throws IOException {
+    public String addProductPost( @RequestParam("productImage") CommonsMultipartFile[] productImage, HttpServletRequest request) throws IOException {
         String selectedCategoryId = request.getParameter("productCategoryId");
         Category cat = categoryService.getById(Long.parseLong(selectedCategoryId));
         String name = request.getParameter("productName");

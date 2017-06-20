@@ -78,7 +78,7 @@
                         <div class="card card-block">
                             <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
                                 <c:if test="${pictures.product.equals(product)}">
-                                <c:if test="${pictures.prymary != 1}">
+                                <c:if test="${pictures.prymary != null}">
                                     <li class="list-group-item">
                                         <img class="card-img-top" alt="${pictures.name}"
                                              src="data:image/png;base64,${pictures.encodedData}"

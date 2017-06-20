@@ -3,6 +3,8 @@ package lv.javaguru.java2.domain.customer;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,6 +19,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull(message = "Name field can't be empty!")
+    @Min(value = 2, message = "Name is too short!")
     private String name;
     private String email;
     private String phone;

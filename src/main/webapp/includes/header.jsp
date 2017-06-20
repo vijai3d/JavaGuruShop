@@ -12,9 +12,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -67,9 +67,11 @@
                     <a class="nav-link" href="<c:url value="/logout" />"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGOUT</a>
                 </sec:authorize>
             </li>
+            <sec:authorize access="isAnonymous()">
             <li class="nav-item">
                 <a class="nav-link" href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a>
             </li>
+            </sec:authorize>
             <li class="nav-item">
                 <sec:authorize access="isAuthenticated()">
                 <a class="nav-link" href="myAccount?${customer.Id}"><i class="fa fa-user" aria-hidden="true"></i> MY ACCOUNT</a>

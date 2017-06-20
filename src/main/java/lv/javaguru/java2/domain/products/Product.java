@@ -140,7 +140,7 @@ public class Product {
         return "entity.Product[id=" + productId + "]";
     }
 
-    @Override
+  /*  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -148,8 +148,31 @@ public class Product {
         Product product = (Product) o;
 
         return productId != null ? productId.equals(product.productId) : product.productId == null;
-    }
+    }*/
 
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+
+        Product other = (Product) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (productId == null) {
+            if (other.productId != null)
+                return false;
+        } else if (!productId.equals(other.productId)) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public int hashCode() {
         return productId != null ? productId.hashCode() : 0;

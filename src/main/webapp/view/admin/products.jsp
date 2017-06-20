@@ -4,8 +4,6 @@
 <jsp:include page="sidebar.jsp"/>
 
 
-
-
 <div class="col-5" style="margin-top: 20px;">
     <div class="card">
         <table class="table table-striped">
@@ -15,7 +13,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th colspan="3" >
+                <th colspan="3">
                     <a class="btn btn-primary" href="/admin/products/add" style="float: right">
                         <i class="fa fa-plus"></i> Add</a>
                 </th>
@@ -27,10 +25,10 @@
                     <th scope="row">${iter.index + 1}</th>
                     <th><c:forEach var="pictures" items="${pictureList}" varStatus="iter">
                         <c:if test="${pictures.product.equals(products)}">
-                            <c:if test="${pictures.prymary != 1}">
-                            <img class="card-img-top" alt="${pictures.name}"
-                             src="data:image/png;base64,${pictures.encodedData}"
-                                 data-holder-rendered="true" style="height: 60px; display: block;">
+                            <c:if test="${pictures.prymary != null}">
+                                <img class="card-img-top" alt="${pictures.name}"
+                                     src="data:image/png;base64,${pictures.encodedData}"
+                                     data-holder-rendered="true" style="height: 60px; display: block;">
                             </c:if>
                         </c:if>
                     </c:forEach>
@@ -43,7 +41,8 @@
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-danger" href="/admin/products/delete/${products.productId}" aria-label="Delete">
+                        <a class="btn btn-danger" href="/admin/products/delete/${products.productId}"
+                           aria-label="Delete">
                             <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -70,17 +69,18 @@
                         <li class="list-group-item">Name: ${selectedProduct.name}</li>
                         <li class="list-group-item">Description: ${selectedProduct.description}</li>
                         <li class="list-group-item">Price: ${selectedProduct.price}</li>
-                        <li class="list-group-item"><ul class="list-group">Images:
-                            <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
-                                <c:if test="${pictures.product.equals(selectedProduct)}">
+                        <li class="list-group-item">
+                            <ul class="list-group">Images:
+                                <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
+                                    <c:if test="${pictures.product.equals(selectedProduct)}">
                                         <li class="list-group-item">
-                                        <img class="card-img-top" alt="${pictures.name}"
-                                             src="data:image/png;base64,${pictures.encodedData}"
-                                             data-holder-rendered="true" style="height: 170px; display: block;">
+                                            <img class="card-img-top" alt="${pictures.name}"
+                                                 src="data:image/png;base64,${pictures.encodedData}"
+                                                 data-holder-rendered="true" style="height: 170px; display: block;">
                                         </li>
-                                </c:if>
-                            </c:forEach>
-                        </ul>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
                         </li>
                     </ul>
                 </c:when>

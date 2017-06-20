@@ -30,7 +30,7 @@ public class ProductValidatorImpl implements ProductValidator {
     private void validateDescription(String description) {
         if (description == null || description.isEmpty()) {
             throw new IllegalArgumentException("Description must be not empty!");
-        }else if (description.length() > 120) {
+        }else if (description.length() > 5120) {
             throw new IllegalArgumentException("Description is too long");
         }
     }
