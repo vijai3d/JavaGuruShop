@@ -118,13 +118,24 @@ public class AdminProductController {
         }
 
         List<String> imageList = new ArrayList<>();
-
-
-
-
-
-
-
+        //need to try save images to the filesystem and connect unique names with database
+   /* String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+ +        path = Paths.get(rootDirectory + "\\resources\\images\\products\\" + product.getProductId() + ".png" );
+ +        if (productImage != null && !productImage.isEmpty()) {
+ +            try {
+ +                productImage.transferTo(new File(path.toString()));
+ +            } catch (Exception e) {
+ +                e.printStackTrace();
+ +                throw new RuntimeException("Product image saving failed", e);
+ +            }
+ +        }*/
+        /*String filename = productImage.getOriginalFilename();
+ +        File tempFile = File.createTempFile("pic",
+ +                getFileExtension(filename), PICTURES_DIR.getFile());
+ +        try (InputStream in = productImage.getInputStream();
+ +             OutputStream out = new FileOutputStream(tempFile)) {
+ +            IOUtils.copy(in, out);
+ +        }*/
         return "redirect:/admin/products";
     }
 
