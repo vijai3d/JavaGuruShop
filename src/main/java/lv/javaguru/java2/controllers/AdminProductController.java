@@ -128,6 +128,13 @@ public class AdminProductController {
  +                throw new RuntimeException("Product image saving failed", e);
  +            }
  +        }*/
+        /*String filename = productImage.getOriginalFilename();
+ +        File tempFile = File.createTempFile("pic",
+ +                getFileExtension(filename), PICTURES_DIR.getFile());
+ +        try (InputStream in = productImage.getInputStream();
+ +             OutputStream out = new FileOutputStream(tempFile)) {
+ +            IOUtils.copy(in, out);
+ +        }*/
         return "redirect:/admin/products";
     }
 
