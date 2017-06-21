@@ -1,4 +1,4 @@
-<jsp:include page="../includes/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/header.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="view" value="/checkout" scope="session"/>
 
@@ -145,4 +145,4 @@
     </div>
 </div>
 </div>
-<jsp:include page="../includes/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/footer.jsp"/>

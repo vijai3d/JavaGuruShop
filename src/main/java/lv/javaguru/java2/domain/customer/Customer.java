@@ -1,10 +1,13 @@
 package lv.javaguru.java2.domain.customer;
 
+import lv.javaguru.java2.services.validators.Phone;
 import org.hibernate.annotations.Proxy;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,13 +23,29 @@ public class Customer {
     private Integer id;
 
     @NotNull(message = "Name field can't be empty!")
-    @Min(value = 2, message = "Name is too short!")
+    @Size(min=2, max=30, message = "Name is too short!")
     private String name;
+
+    @NotNull(message = "Can't be empty!")
+    @Email(message = "Email is not correctly entered")
     private String email;
+    @NotNull
+    @Phone(message = "Phone number is incorrect. Valid formats are 1234567890, 123-456-7890 x1234")
     private String phone;
+
+    @NotNull(message = "Can't be empty!")
+    @Size(min=2, max=145, message = "Address is incorrect!")
     private String address;
+
+    @NotNull(message = "Can't be empty!")
+    @Size(min=2, max=45, message = "City is incorrect!")
     private String city;
+
+    @NotNull(message = "Can't be empty!")
+    @Size(min=2, max=45, message = "Country name is incorrect!")
     private String country;
+
+    @NotNull(message = "Can't be empty!")
     private String password;
 
     @OneToMany( fetch = FetchType.LAZY, mappedBy = "customer", orphanRemoval=true)

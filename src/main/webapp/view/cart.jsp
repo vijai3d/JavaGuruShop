@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../includes/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/header.jsp"/>
 
 <div class="container" style="margin-top: 100px;">
     <table class="table table-striped">
@@ -89,4 +89,4 @@
         </div>
     </c:if>
 
-<jsp:include page="../includes/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/footer.jsp"/>

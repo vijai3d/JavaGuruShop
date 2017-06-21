@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="../includes/header.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/header.jsp"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -180,4 +180,4 @@
     </div><!-- /card-container -->
 </div><!-- /container -->
 
-<jsp:include page="../includes/footer.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/includes/footer.jsp"/>
