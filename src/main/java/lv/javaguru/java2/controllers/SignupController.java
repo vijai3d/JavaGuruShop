@@ -4,6 +4,8 @@ import lv.javaguru.java2.domain.customer.Customer;
 import lv.javaguru.java2.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +26,11 @@ import javax.validation.Valid;
 public class SignupController {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private CustomerService customerService;
+
     @GetMapping
     @ModelAttribute
     private String signup(Model model) {
@@ -42,6 +48,9 @@ public class SignupController {
             return "signup";
         } else {
             HttpSession session = request.getSession();
+            String plain_password = customer.getPassword();
+            String pw_hash = BCrypt.hashpw(plain_password, BCrypt.gensalt(12));
+            customer.setPassword(pw_hash);
             customerService.create(customer);
             session.setAttribute("customer", customer);
             return "redirect:/index";

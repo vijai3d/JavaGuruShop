@@ -45,6 +45,7 @@ public class Customer {
     @Size(min=2, max=45, message = "Country name is incorrect!")
     private String country;
 
+    @Column(name = "password", length = 60)
     @NotNull(message = "Can't be empty!")
     private String password;
 
