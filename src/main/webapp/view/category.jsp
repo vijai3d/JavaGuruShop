@@ -75,16 +75,17 @@
             <div class="row">
                 <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
                     <div class="col-sm-12 col-md-4 col-lg-3">
+                        <a href="/product?${product.productId}" class="list-group-item-action">
                         <div class="card card-block">
                             <c:forEach var="pictures" items="${pictureList}" varStatus="iter">
                                 <c:if test="${pictures.product.equals(product)}">
-                                <c:if test="${pictures.prymary != null}">
-                                    <li class="list-group-item">
-                                        <img class="card-img-top" alt="${pictures.name}"
-                                             src="data:image/png;base64,${pictures.encodedData}"
-                                             data-holder-rendered="true" style="height: 180px; width: 100%; display: block;">
-                                    </li>
-                                </c:if>
+                                    <c:if test="${pictures.prymary != null}">
+                                        <li class="list-group-item">
+                                            <img class="card-img-top" alt="${pictures.name}"
+                                                 src="data:image/png;base64,${pictures.encodedData}"
+                                                 data-holder-rendered="true" style="height: 180px; width: 100%; display: block;">
+                                        </li>
+                                    </c:if>
                                 </c:if>
                             </c:forEach>
                             <div class="card-block">
@@ -101,6 +102,7 @@
                                 </form>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </c:forEach>
             </div>
